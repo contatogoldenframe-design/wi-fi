@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: redemae_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: rede_mae
+      POSTGRES_USER: redemae
+      POSTGRES_PASSWORD: Red3M@e_S3cur3_2026!
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  servidor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redemae_servidor
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: rede_mae
+      DB_USER: redemae
+      DB_PASS: Red3M@e_S3cur3_2026!
+      JWT_SECRET: R3d3M@e_JWT_Sup3rS3cr3t_2026
+      PORTA: 3000
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:

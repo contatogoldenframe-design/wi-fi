@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Rede Mãe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-table { width:100%; border-collapse:collapse; }
+        .admin-table th { text-align:left; padding:12px 16px; font-size:13px; color:var(--gray-400); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid rgba(255,255,255,0.08); }
+        .admin-table td { padding:12px 16px; font-size:14px; border-bottom:1px solid rgba(255,255,255,0.05); }
+        .admin-table tr:hover td { background:rgba(99,102,241,0.05); }
+        .badge { display:inline-flex; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600; }
+        .badge-success { background:rgba(16,185,129,0.2); color:var(--success); }
+        .badge-warning { background:rgba(245,158,11,0.2); color:var(--warning); }
+        .badge-danger { background:rgba(239,68,68,0.2); color:var(--danger); }
+        .badge-info { background:rgba(99,102,241,0.2); color:var(--primary-light); }
+    </style>
+</head>
+<body>
+    <div class="painel-layout">
+        <aside class="painel-sidebar">
+            <div class="logo">
+                <div class="logo-icon">RM</div>
+                <span class="logo-text">Rede Mãe</span>
+                <span style="font-size:10px;background:var(--primary);padding:2px 8px;border-radius:50px;color:white;font-weight:700;">ADMIN</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-page="dashboard"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a>
+                <a href="#" data-page="usuarios"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Usuários</a>
+                <a href="#" data-page="planos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Planos</a>
+                <a href="#" data-page="transacoes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Transações</a>
+                <a href="#" data-page="sims"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3"/></svg> SIM Cards</a>
+                <a href="painel.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> Painel Usuário</a>
+            </nav>
+        </aside>
+        <main class="painel-main">
+            <div class="painel-header">
+                <h1 id="pageTitle">Dashboard Admin</h1>
+                <span style="color:var(--gray-400);font-size:14px;">Rede Mãe — Administração</span>
+            </div>
+            <div id="pageContent">
+                <div class="stats-grid" id="adminStats">
+                    <div class="stat-card"><div class="label">Usuários ativos</div><div class="value" id="adminUserCount">--</div></div>
+                    <div class="stat-card"><div class="label">SIMs ativos</div><div class="value" id="adminSimCount">--</div></div>
+                    <div class="stat-card"><div class="label">Conexões ativas</div><div class="value" id="adminConnCount">--</div></div>
+                    <div class="stat-card"><div class="label">Receita do mês</div><div class="value" id="adminRevenue">--</div></div>
+                    <div class="stat-card"><div class="label">Dados trafegados</div><div class="value" id="adminDataUsed">--</div></div>
+                    <div class="stat-card"><div class="label">Transações do mês</div><div class="value" id="adminTransCount">--</div></div>
+                </div>
+                <div style="background:var(--gray-900);border-radius:16px;padding:32px;border:1px solid rgba(255,255,255,0.08);">
+                    <h3 style="margin-bottom:16px;">Servidor</h3>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span style="width:12px;height:12px;background:var(--success);border-radius:50%;animation:pulse 2s infinite;"></span>
+                        <span>Online — Capacidade: 800 Mbps</span>
+                        <span style="color:var(--gray-600);margin-left:auto;font-size:13px;">Última atualização: <span id="adminLastUpdate">agora</span></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const adminPages = {
+            dashboard: loadAdminDashboard,
+            usuarios: () => loadAdminPage('Usuários', '<p style="color:var(--gray-400);">Carregando...</p>'),
+            planos: () => loadAdminPage('Planos', '<p style="color:var(--gray-400);">Gerenciamento de planos</p>'),
+            transacoes: () => loadAdminPage('Transações', '<p style="color:var(--gray-400);">Carregando...</p>'),
+            sims: () => loadAdminPage('SIM Cards', '<p style="color:var(--gray-400);">Carregando...</p>')
+        };
+
+        document.querySelectorAll('.sidebar-nav a[data-page]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                link.classList.add('active');
+                const page = link.dataset.page;
+                document.getElementById('pageTitle').textContent = link.textContent.trim();
+                if (adminPages[page]) adminPages[page]();
+            });
+        });
+
+        function loadAdminPage(title, content) {
+            document.getElementById('pageTitle').textContent = title;
+            document.getElementById('pageContent').innerHTML = content;
+        }
+
+        async function loadAdminDashboard() {
+            document.getElementById('pageTitle').textContent = 'Dashboard Admin';
+            document.getElementById('pageContent').innerHTML = `
+                <div class="stats-grid" id="adminStats">
+                    <div class="stat-card"><div class="label">Usuários ativos</div><div class="value" id="adminUserCount">--</div></div>
+                    <div class="stat-card"><div class="label">SIMs ativos</div><div class="value" id="adminSimCount">--</div></div>
+                    <div class="stat-card"><div class="label">Conexões ativas</div><div class="value" id="adminConnCount">--</div></div>
+                    <div class="stat-card"><div class="label">Receita do mês</div><div class="value" id="adminRevenue">--</div></div>
+                    <div class="stat-card"><div class="label">Dados trafegados</div><div class="value" id="adminDataUsed">--</div></div>
+                    <div class="stat-card"><div class="label">Transações do mês</div><div class="value" id="adminTransCount">--</div></div>
+                </div>
+                <div style="background:var(--gray-900);border-radius:16px;padding:32px;border:1px solid rgba(255,255,255,0.08);">
+                    <h3 style="margin-bottom:16px;">Servidor</h3>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <span style="width:12px;height:12px;background:var(--success);border-radius:50%;animation:pulse 2s infinite;"></span>
+                        <span>Online — Capacidade: 800 Mbps</span>
+                        <span style="color:var(--gray-600);margin-left:auto;font-size:13px;">Última atualização: <span id="adminLastUpdate">agora</span></span>
+                    </div>
+                </div>
+            `;
+            try {
+                const stats = await api.getAdminDashboard();
+                document.getElementById('adminUserCount').textContent = stats.usuarios_ativos || 0;
+                document.getElementById('adminSimCount').textContent = stats.sims_ativos || 0;
+                document.getElementById('adminConnCount').textContent = stats.conexoes_ativas || 0;
+                document.getElementById('adminRevenue').textContent = `R$ ${parseFloat(stats.receita_mes || 0).toFixed(2)}`;
+                document.getElementById('adminDataUsed').textContent = `${parseFloat(stats.dados_trafegados_mes || 0).toFixed(1)} GB`;
+                document.getElementById('adminTransCount').textContent = stats.transacoes_mes || 0;
+            } catch (err) {
+                document.getElementById('adminUserCount').textContent = 'Erro';
+            }
+        }
+
+        loadAdminDashboard();
+    </script>
+</body>
+</html>

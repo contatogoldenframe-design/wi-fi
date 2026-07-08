@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Rede Mãe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <a href="index.html" class="logo" style="text-decoration:none;">
+                <div class="logo-icon">RM</div>
+                <span class="logo-text">Rede Mãe</span>
+            </a>
+            <h1 class="auth-title">Entrar</h1>
+            <p class="auth-subtitle">Acesse seu painel para gerenciar sua internet.</p>
+
+            <form id="formLogin">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-input" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" class="form-input" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-full" id="btnLogin">
+                    Entrar
+                </button>
+
+                <div class="form-footer" style="display:flex; justify-content:space-between; margin-top:16px;">
+                    <a href="#">Esqueci a senha</a>
+                    <a href="cadastro.html">Criar conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnLogin');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Entrando...';
+            btn.disabled = true;
+
+            try {
+                const result = await api.login(
+                    document.getElementById('email').value,
+                    document.getElementById('senha').value
+                );
+                localStorage.setItem('token', result.token);
+                localStorage.setItem('usuario', JSON.stringify(result.usuario));
+                window.location.href = 'painel.html';
+            } catch (err) {
+                alert(err.error || 'Erro ao fazer login. Verifique suas credenciais.');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

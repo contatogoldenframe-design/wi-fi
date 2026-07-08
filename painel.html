@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel — Rede Mãe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="painel-layout">
+        <!-- SIDEBAR -->
+        <aside class="painel-sidebar">
+            <div class="logo">
+                <div class="logo-icon">RM</div>
+                <span class="logo-text">Rede Mãe</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="active" data-page="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Dashboard
+                </a>
+                <a href="#" data-page="esim">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+                    Meu eSIM
+                </a>
+                <a href="#" data-page="planos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Meu Plano
+                </a>
+                <a href="#" data-page="roteador">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h4l-4 4v-4z"/><path d="M9 5l7 7-7 7"/><path d="M14 5h5v5"/></svg>
+                    Modo Roteador
+                </a>
+                <a href="#" data-page="recarga">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Recarga
+                </a>
+                <a href="#" data-page="dispositivos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    Dispositivos
+                </a>
+                <a href="#" onclick="logout()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Sair
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="painel-main" id="painelMain">
+            <div class="painel-header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <span id="usuarioNome" style="color:var(--gray-400);font-size:15px;"></span>
+                    <button class="btn btn-sm btn-outline" onclick="logout()">Sair</button>
+                </div>
+            </div>
+            <div id="pageContent">
+                <!-- Renderizado via JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Verificar autenticação
+        const token = localStorage.getItem('token');
+        if (!token) window.location.href = 'login.html';
+
+        const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+        document.getElementById('usuarioNome').textContent = usuario.nome || 'Usuário';
+
+        // Navegação
+        const pages = {
+            dashboard: renderDashboard,
+            esim: renderESIM,
+            planos: renderPlanosPage,
+            roteador: renderRoteador,
+            recarga: renderRecarga,
+            dispositivos: renderDispositivos
+        };
+
+        document.querySelectorAll('.sidebar-nav a[data-page]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                link.classList.add('active');
+                const page = link.dataset.page;
+                document.getElementById('pageTitle').textContent = link.textContent.trim();
+                if (pages[page]) pages[page]();
+            });
+        });
+
+        // Carregar dashboard inicial
+        renderDashboard();
+    </script>
+</body>
+</html>

@@ -2,177 +2,561 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rede Mãe — Oficial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Rede Mãe — Wi-Fi Inteligente</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,'Segoe UI',Arial,sans-serif;background:#0f172a;color:#fff;min-height:100vh}
-.container{max-width:1200px;margin:0 auto;padding:20px}
-.header{background:rgba(15,23,42,0.95);border-bottom:1px solid rgba(255,255,255,0.1);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#06b6d4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav a,.nav button{color:#94a3b8;text-decoration:none;padding:8px 16px;border-radius:8px;border:none;background:none;cursor:pointer;font-size:14px;font-family:inherit;transition:0.3s}
-.nav a:hover,.nav button:hover{color:#fff;background:rgba(255,255,255,0.05)}
-.nav a.active{color:#818cf8;background:rgba(99,102,241,0.15)}
-.card{background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:16px}
-.card-title{font-size:18px;font-weight:600;margin-bottom:16px}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:#060613;color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* PARTICLES BG */
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+/* HEADER */
+.header{background:rgba(6,6,19,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(99,102,241,0.12);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-0.5px}
+.logo-glow{width:34px;height:34px;background:linear-gradient(135deg,#6366f1,#06b6d4,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;box-shadow:0 0 30px rgba(99,102,241,0.25);animation:logoPulse 3s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 20px rgba(99,102,241,0.2)}50%{box-shadow:0 0 50px rgba(99,102,241,0.5)}}
+.nav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.nav a,.nav button{color:#64748b;text-decoration:none;padding:7px 16px;border-radius:8px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;transition:all 0.25s}
+.nav a:hover,.nav button:hover{color:#fff;background:rgba(99,102,241,0.08)}
+.nav a.active{color:#fff;background:rgba(99,102,241,0.12)}
+.btn-sair{background:rgba(239,68,68,0.08);color:#fca5a5;border:1px solid rgba(239,68,68,0.15);border-radius:8px;padding:7px 14px;font-size:13px;font-weight:500}
+.btn-sair:hover{background:rgba(239,68,68,0.15)!important;border-color:rgba(239,68,68,0.3)!important}
+
+/* CONTAINER */
+.container{max-width:1100px;margin:0 auto;padding:20px 24px}
+
+/* CARDS */
+.card{background:linear-gradient(145deg,rgba(30,41,59,0.6),rgba(15,23,42,0.8));border:1px solid rgba(99,102,241,0.08);border-radius:18px;padding:24px;margin-bottom:16px;backdrop-filter:blur(8px);transition:all 0.3s}
+.card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 8px 30px rgba(99,102,241,0.04)}
+.card-title{font-size:17px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+
+/* FORM */
 .form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:14px;color:#94a3b8;margin-bottom:6px}
-.form-input,.form-select{width:100%;padding:12px 16px;background:#0f172a;border:1px solid #334155;border-radius:10px;color:#fff;font-size:15px;font-family:inherit;transition:0.3s}
-.form-input:focus,.form-select:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.2)}
+.form-group label{display:block;font-size:12px;color:#64748b;margin-bottom:5px;font-weight:500;letter-spacing:0.2px}
+.form-input,.form-select{width:100%;padding:12px 16px;background:rgba(15,23,42,0.6);border:1px solid rgba(99,102,241,0.12);border-radius:12px;color:#fff;font-size:14px;font-family:inherit;transition:all 0.25s}
+.form-input:focus,.form-select:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.1)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.form-row{grid-template-columns:1fr}}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;border:none;cursor:pointer;font-family:inherit;transition:0.3s}
-.btn-primary{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,102,241,0.4)}
-.btn-outline{background:transparent;color:#fff;border:1px solid #334155}
-.btn-outline:hover{border-color:#6366f1;color:#818cf8}
-.btn-danger{background:#ef4444;color:#fff}
-.btn-success{background:#10b981;color:#fff}
-.btn-sm{padding:8px 16px;font-size:13px}
-.btn-lg{padding:14px 32px;font-size:17px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 24px;border-radius:12px;font-weight:600;font-size:13px;border:none;cursor:pointer;font-family:inherit;transition:all 0.3s;text-decoration:none;color:#fff}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#4f46e5);box-shadow:0 4px 16px rgba(99,102,241,0.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(99,102,241,0.35)}
+.btn-outline{background:transparent;border:1px solid rgba(99,102,241,0.2)}
+.btn-outline:hover{border-color:#818cf8;background:rgba(99,102,241,0.05);transform:translateY(-1px)}
+.btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.btn-danger:hover{box-shadow:0 6px 20px rgba(239,68,68,0.3);transform:translateY(-2px)}
+.btn-success{background:linear-gradient(135deg,#10b981,#059669)}
+.btn-success:hover{box-shadow:0 6px 20px rgba(16,185,129,0.3);transform:translateY(-2px)}
+.btn-sm{padding:6px 14px;font-size:12px;border-radius:8px}
 .w-full{width:100%;justify-content:center}
+.mt-2{margin-top:8px}.mt-3{margin-top:12px}.mt-4{margin-top:16px}.mb-2{margin-bottom:8px}.mb-4{margin-bottom:16px}
+
+/* GRID */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 @media(max-width:700px){.grid-2{grid-template-columns:1fr}}
-.table{width:100%;border-collapse:collapse}
-.table th{text-align:left;padding:12px 16px;font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08)}
-.table td{padding:12px 16px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.05)}
-.table tr:hover td{background:rgba(99,102,241,0.05)}
-.badge{display:inline-flex;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600}
-.badge-success{background:rgba(16,185,129,0.2);color:#10b981}
-.badge-danger{background:rgba(239,68,68,0.2);color:#ef4444}
-.badge-info{background:rgba(99,102,241,0.2);color:#818cf8}
-.alert{padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:14px}
-.alert-error{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#fca5a5}
-.alert-success{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7}
-.tab-content{display:none}
-.tab-content.active{display:block;animation:fadeIn 0.3s}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* BADGES */
+.badge{display:inline-flex;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;align-items:center;gap:4px}
+.badge-success{background:rgba(16,185,129,0.12);color:#34d399}
+.badge-danger{background:rgba(239,68,68,0.12);color:#fca5a5}
+.badge-info{background:rgba(99,102,241,0.12);color:#a5b4fc}
+.badge-premium{background:rgba(251,191,36,0.1);color:#fbbf24;font-size:10px;padding:2px 8px;border-radius:10px}
+
+/* TABLE */
+.table-container{overflow-x:auto;border-radius:12px;background:rgba(15,23,42,0.2)}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th{padding:10px 12px;color:#475569;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.3px;border-bottom:1px solid rgba(99,102,241,0.06);white-space:nowrap}
+.table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.table tr:hover td{background:rgba(99,102,241,0.02)}
+
+/* TEXT */
+.text-gray{color:#94a3b8}
+.text-sm{font-size:12px;color:#64748b}
+.text-xs{font-size:11px;color:#475569}
 .text-center{text-align:center}
-.text-gray{color:#94a3b8;font-size:14px}
-.mt-4{margin-top:16px}
-.mb-4{margin-bottom:16px}
 .flex{display:flex;align-items:center;gap:8px}
 .flex-between{display:flex;justify-content:space-between;align-items:center}
+.flex-wrap{flex-wrap:wrap}
+.gap-2{gap:8px}
+.ml-auto{margin-left:auto}
+
+/* TABS */
+.tab-content{display:none;animation:tabIn 0.35s ease}
+.tab-content.active{display:block}
+@keyframes tabIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+
+/* QUILL */
+.quill-card{position:relative;overflow:hidden}
+.quill-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.03),transparent,rgba(6,182,212,0.03),transparent);animation:quillRotate 10s linear infinite;pointer-events:none}
+@keyframes quillRotate{100%{transform:rotate(360deg)}}
+.quill-card>*{position:relative;z-index:1}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal-box{background:linear-gradient(145deg,#1e293b,#0f172a);border:1px solid rgba(99,102,241,0.2);border-radius:20px;padding:28px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto}
+
+/* ALERT */
+.alert{padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:12px}
+.alert-success{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:#34d399}
+.alert-error{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#fca5a5}
+
+/* HERO */
+.hero{text-align:center;padding:64px 16px 32px}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:900;line-height:1.1;background:linear-gradient(135deg,#e2e8f0 30%,#818cf8 60%,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:16px;color:#64748b;max-width:480px;margin:14px auto 28px;line-height:1.7}
+
+/* WIFI ICON */
+.wifi-icon{display:inline-block;width:20px;height:20px;position:relative}
+.wifi-icon::before{content:'📶';font-size:18px}
+
+/* SCROLL */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#060613}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#6366f1,#06b6d4);border-radius:2px}
 </style>
 </head>
 <body>
-<div id="app">
-<header class="header">
-<div class="logo"><div class="logo-icon">RM</div><span>Rede Mãe</span></div>
-<nav class="nav" id="navHeader">
-<a href="#" onclick="irPara('home')" class="active" id="navHome">🏠 Início</a>
-<a href="#" onclick="irPara('cadastro')" id="navCadastro">📝 Cadastro</a>
-<a href="#" onclick="irPara('login')" id="navLogin">🔑 Login</a>
-<a href="#" onclick="irPara('painel')" id="navPainel" style="display:none">📊 Painel</a>
-<a href="#" onclick="irPara('admin')" id="navAdmin" style="display:none">⚙️ Admin</a>
-<button onclick="sair()" id="btnSair" style="display:none">🚪 Sair</button>
-</nav>
-</header>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="header">
+<div class="logo"><div class="logo-glow">RM</div> Rede Mãe</div>
+<div class="nav" id="navHeader">
+<a href="#" id="navHome" onclick="irPara('home')" class="active">Início</a>
+<a href="#" id="navCadastro" onclick="irPara('cadastro')">Cadastro</a>
+<a href="#" id="navLogin" onclick="irPara('login')">Login</a>
+<a href="#" id="navPainel" onclick="irPara('painel')" style="display:none">Painel</a>
+<a href="#" id="navAdmin" onclick="irPara('admin')" style="display:none">⚡ Admin</a>
+<button id="btnSair" onclick="sair()" class="btn-sair" style="display:none">✕ Sair</button>
+</div>
+</div>
+
 <div class="container">
+
 <div class="tab-content active" id="paginaHome">
-<div style="text-align:center;padding:60px 20px;">
-<h1 style="font-size:48px;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#6366f1,#06b6d4,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Rede Mãe</h1>
-<p style="font-size:20px;color:#94a3b8;max-width:600px;margin:0 auto 32px;">Sua operadora virtual de internet. Até 800Mbps, eSIM automático, modo roteador. <strong>Sem antena, sem instalação.</strong></p>
-<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-<button class="btn btn-primary btn-lg" onclick="irPara('cadastro')">📱 Ativar eSIM Grátis</button>
-<button class="btn btn-outline btn-lg" onclick="irPara('login')">🔑 Entrar</button>
-</div>
-<div style="display:flex;justify-content:center;gap:40px;margin-top:60px;flex-wrap:wrap;">
-<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">800</div><div style="color:#64748b;font-size:14px;">Mbps máx</div></div>
-<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div><div style="color:#64748b;font-size:14px;">Digital</div></div>
-<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">5min</div><div style="color:#64748b;font-size:14px;">Ativação</div></div>
-<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">∞</div><div style="color:#64748b;font-size:14px;">Dispositivos</div></div>
+<div class="hero">
+<h1>Rede Mãe</h1>
+<p>Conectividade Wi-Fi inteligente. Você gerencia as redes, os planos e os clientes. Tudo real, sem custos.</p>
+<div class="flex" style="justify-content:center;gap:12px;flex-wrap:wrap">
+<a href="#" onclick="irPara('cadastro')" class="btn btn-primary">📡 Criar Conta</a>
+<a href="#" onclick="irPara('login')" class="btn btn-outline">🔐 Entrar</a>
 </div>
 </div>
-<div class="grid-3" style="margin-top:40px;">
-<div class="card"><h3>📱 Cadastro rápido</h3><p class="text-gray">2 minutos e seu eSIM está ativo.</p></div>
-<div class="card"><h3>📡 Modo roteador</h3><p class="text-gray">Seu celular vira um hotspot WiFi.</p></div>
-<div class="card"><h3>👨‍👩‍👧‍👦 Plano Família</h3><p class="text-gray">10 dispositivos, mesma conta, 400Mbps.</p></div>
-<div class="card"><h3>🔒 Segurança</h3><p class="text-gray">Criptografia de ponta a ponta.</p></div>
-<div class="card"><h3>💳 Recarga</h3><p class="text-gray">Via PIX ou pelo admin.</p></div>
-<div class="card"><h3>🎮 Painel completo</h3><p class="text-gray">Gerencie tudo online.</p></div>
+<div class="grid-3">
+<div class="card quill-card"><div style="font-size:32px;margin-bottom:8px">📶</div><h3>Wi-Fi Real</h3><p class="text-gray">Credenciais de redes Wi-Fi reais que você mesmo cria. Conecte e use.</p></div>
+<div class="card quill-card"><div style="font-size:32px;margin-bottom:8px">👨‍👩‍👧‍👦</div><h3>Família</h3><p class="text-gray">Até 10 dispositivos na mesma conta. Ideal para toda a casa.</p></div>
+<div class="card quill-card"><div style="font-size:32px;margin-bottom:8px">⚡</div><h3>Você Controla</h3><p class="text-gray">Define planos, preços, cria redes Wi-Fi, bloqueia ou ativa clientes.</p></div>
 </div>
 </div>
+
 <div class="tab-content" id="paginaCadastro">
-<div style="max-width:500px;margin:40px auto;">
-<h2 style="margin-bottom:8px;">📝 Criar conta</h2>
-<p style="color:#94a3b8;margin-bottom:24px;">Preencha para ativar seu eSIM grátis.</p>
+<div style="max-width:460px;margin:32px auto">
+<div class="card">
+<h2 class="card-title">📡 Criar Conta</h2>
 <div id="cadastroAlert"></div>
 <form id="formCadastro" onsubmit="return cadastrar(event)">
 <div class="form-group"><label>Nome completo</label><input class="form-input" id="cNome" required></div>
-<div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="cEmail" required></div>
-<div class="form-group"><label>Telefone / WhatsApp</label><input class="form-input" id="cTel" required placeholder="(11)99999-9999"></div>
+<div class="form-row">
+<div class="form-group"><label>Email</label><input class="form-input" type="email" id="cEmail" required></div>
+<div class="form-group"><label>Telefone</label><input class="form-input" type="tel" id="cTel" required></div>
+</div>
 <div class="form-row">
 <div class="form-group"><label>CPF</label><input class="form-input" id="cCpf" required></div>
 <div class="form-group"><label>Senha</label><input class="form-input" type="password" id="cSenha" required minlength="4"></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label>Cidade</label><input class="form-input" id="cCidade" required></div>
+<div class="form-group"><label>Cidade</label><input class="form-input" id="cCidade"></div>
 <div class="form-group"><label>Estado</label>
-<select class="form-select" id="cEstado" required>
-<option value="">Selecione</option>
-<option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option>
-<option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option>
-<option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
-<option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option>
-<option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option>
-<option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
-<option value="SP" selected>SP</option><option value="SE">SE</option><option value="TO">TO</option>
-</select></div></div>
-<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
-<input type="checkbox" id="cTermos" style="margin-top:4px;accent-color:#6366f1;">
-<label style="font-size:14px;color:#94a3b8;">Aceito os Termos de Uso</label></div>
-<button class="btn btn-primary btn-lg w-full" type="submit">📱 Ativar meu eSIM Grátis</button>
+<select class="form-select" id="cEstado"><option value="">Selecione</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select></div>
+</div>
+<div class="form-group" style="display:flex;align-items:center;gap:8px">
+<input type="checkbox" id="cTermos" style="width:16px;height:16px;accent-color:#6366f1">
+<label for="cTermos" style="margin:0;font-size:13px;color:#94a3b8">Aceito os termos de uso</label>
+</div>
+<button type="submit" class="btn btn-primary w-full">📡 Cadastrar</button>
 </form>
-<p class="text-center text-gray mt-4">Já tem conta? <a href="#" onclick="irPara('login')" style="color:#818cf8;text-decoration:none;">Fazer login</a></p>
-</div></div>
+<p class="text-center text-gray mt-4">Já tem conta? <a href="#" onclick="irPara('login')" style="color:#818cf8;text-decoration:none;font-weight:600">Entrar</a></p>
+</div>
+</div>
+</div>
+
 <div class="tab-content" id="paginaLogin">
-<div style="max-width:400px;margin:40px auto;">
-<h2 style="margin-bottom:8px;">🔑 Entrar</h2>
-<p style="color:#94a3b8;margin-bottom:24px;">Acesse sua conta Rede Mãe.</p>
+<div style="max-width:380px;margin:32px auto">
+<div class="card">
+<h2 class="card-title">🔐 Entrar</h2>
 <div id="loginAlert"></div>
 <form id="formLogin" onsubmit="return logar(event)">
-<div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="lEmail" required></div>
+<div class="form-group"><label>Email</label><input class="form-input" type="email" id="lEmail" required></div>
 <div class="form-group"><label>Senha</label><input class="form-input" type="password" id="lSenha" required></div>
-<button class="btn btn-primary btn-lg w-full" type="submit">🔑 Entrar</button>
+<button type="submit" class="btn btn-primary w-full">🔐 Entrar</button>
 </form>
-<p class="text-center text-gray mt-4">Não tem conta? <a href="#" onclick="irPara('cadastro')" style="color:#818cf8;text-decoration:none;">Cadastrar</a></p>
-</div></div>
-<div class="tab-content" id="paginaPainel"><h2 style="margin-bottom:16px;">📊 Meu Painel</h2><div id="painelConteudo"></div></div>
-<div class="tab-content" id="paginaAdmin"><h2 style="margin-bottom:16px;">⚙️ Administrativo</h2><div id="adminConteudo"></div></div>
-</div></div>
-<script>
-const DB={carregar(){const s=localStorage.getItem('redemae_db');return s?JSON.parse(s):this.iniciar()},salvar(db){localStorage.setItem('redemae_db',JSON.stringify(db))},iniciar(){const db={usuarios:[],planos:[{id:'p1',nome:'Básico',desc:'Internet individual',vel:50,franquia:20,preco:49.90,rotear:false,maxRoteadas:0,limDisp:1},{id:'p2',nome:'Intermediário',desc:'Compartilhamento limitado',vel:150,franquia:60,preco:89.90,rotear:true,maxRoteadas:3,limDisp:3},{id:'p3',nome:'Avançado',desc:'Alta velocidade pra família',vel:300,franquia:150,preco:149.90,rotear:true,maxRoteadas:10,limDisp:10},{id:'p4',nome:'Power 800',desc:'Máxima potência 800Mbps',vel:800,franquia:500,preco:299.90,rotear:true,maxRoteadas:20,limDisp:20},{id:'p5',nome:'Família',desc:'10 dispositivos mesmo login, sem roteador',vel:400,franquia:200,preco:199.90,rotear:false,maxRoteadas:0,limDisp:10}],sims:[],transacoes:[],tokens:{}};
-db.usuarios.push({id:'admin_id',nome:'Administrador',email:'admin@redemae.com',telefone:'(11)11111-0000',cpf:'000.000.000-00',senha:this.hash('admin123'),cidade:'São Paulo',estado:'SP',saldo:999999,status:'ativo',data:new Date().toISOString()});return db},hash(s){return btoa(s).split('').reverse().join('')+s.length},uuid(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c=='x'?r:(r&0x3|0x8)).toString(16)})},
-usuarioPorEmail(e){return this.carregar().usuarios.find(u=>u.email===e.toLowerCase())},usuarioPorId(i){return this.carregar().usuarios.find(u=>u.id===i)},
-criarUsuario(d){const db=this.carregar();const u={id:this.uuid(),nome:d.nome,email:d.email.toLowerCase(),telefone:d.telefone,cpf:d.cpf,senha:this.hash(d.senha),cidade:d.cidade,estado:d.estado,saldo:0,status:'ativo',data:new Date().toISOString()};db.usuarios.push(u);
-const s={id:this.uuid(),iccid:'8955'+this.uuid().replace(/-/g,'').slice(0,12),imsi:'72405'+this.uuid().replace(/-/g,'').slice(0,10),ki:this.uuid().toUpperCase().replace(/-/g,'').slice(0,16),opc:this.uuid().toUpperCase().replace(/-/g,'').slice(0,16),usuario_id:u.id,plano_id:'p1',msisdn:'55'+['11','21','31','41'][Math.floor(Math.random()*4)]+'9'+Math.floor(10000000+Math.random()*90000000),status:'ativo',tipo:'esim',apn:'redemae.internet',consumo:0,total:60};db.sims.push(s);this.salvar(db);return{usuario:u,sim:s}},
-login(e,s){const db=this.carregar();const u=db.usuarios.find(u=>u.email===e.toLowerCase());if(!u||u.senha!==this.hash(s))return null;if(u.status==='bloqueado')return null;const t=this.uuid()+this.uuid();db.tokens[t]=u.email;this.salvar(db);return{usuario:{id:u.id,nome:u.nome,email:u.email},token:t}},
-tokenValido(t){if(!t)return null;const e=this.carregar().tokens[t];if(!e)return null;return this.usuarioPorEmail(e)},simDoUsuario(u){return this.carregar().sims.find(s=>s.usuario_id===u)},
-mudarPlano(u,p){const db=this.carregar();const s=db.sims.find(s=>s.usuario_id===u);if(s)s.plano_id=p;this.salvar(db)},
-addSaldo(u,v){const db=this.carregar();const us=db.usuarios.find(us=>us.id===u);if(!us)return;const a=us.saldo;us.saldo=Number(a)+Number(v);db.transacoes.push({id:this.uuid(),usuario_id:u,tipo:'recarga',valor:Number(v),saldo_anterior:a,saldo_posterior:us.saldo,metodo:'admin',status:'confirmada',desc:'Recarga admin',data:new Date().toISOString()});this.salvar(db)},
-debitar(u,v,d){const db=this.carregar();const us=db.usuarios.find(us=>us.id===u);if(!us||us.saldo<v)return false;const a=us.saldo;us.saldo=Number(us.saldo)-Number(v);db.transacoes.push({id:this.uuid(),usuario_id:u,tipo:'assinatura',valor:Number(v),saldo_anterior:a,saldo_posterior:us.saldo,metodo:'saldo',status:'confirmada',desc:d,data:new Date().toISOString()});this.salvar(db);return true}};
+<p class="text-center text-gray mt-4">Não tem conta? <a href="#" onclick="irPara('cadastro')" style="color:#818cf8;text-decoration:none;font-weight:600">Cadastrar</a></p>
+</div>
+</div>
+</div>
 
+<div class="tab-content" id="paginaPainel">
+<div id="painelConteudo"><p class="text-center text-gray mt-4">Carregando...</p></div>
+</div>
+
+<div class="tab-content" id="paginaAdmin">
+<div id="adminConteudo"><p class="text-center text-gray mt-4">Carregando...</p></div>
+</div>
+
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+<div class="modal-box" id="modalBox">
+<div id="modalBody"></div>
+</div>
+</div>
+
+<script>
+// ==================== PARTICLES BACKGROUND ====================
+(function(){
+const c=document.getElementById('bgCanvas');
+const ctx=c.getContext('2d');
+let particles=[];
+
+function resize(){c.width=window.innerWidth;c.height=window.innerHeight}
+window.addEventListener('resize',resize);resize();
+
+function init(){particles=[];for(let i=0;i<60;i++){particles.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,size:1+Math.random()*2,alpha:0.1+Math.random()*0.3})}}
+init();
+
+function animate(){
+ctx.clearRect(0,0,c.width,c.height);
+particles.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
+if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
+ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fillStyle=`rgba(99,102,241,${p.alpha})`;
+ctx.fill()
+});
+particles.forEach((a,i)=>{
+for(let j=i+1;j<particles.length;j++){
+const b=particles[j];const dx=a.x-b.x;const dy=a.y-b.y;const dist=Math.sqrt(dx*dx+dy*dy);
+if(dist<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(99,102,241,${0.04*(1-dist/120)})`;ctx.lineWidth=0.5;ctx.stroke()}
+}
+});
+requestAnimationFrame(animate)
+}
+animate()
+})();
+
+// ==================== VER SENHA ====================
+function verSenha(id,btn){
+const i=document.getElementById(id);
+if(!i||!btn)return;
+if(i.type==='password'){i.type='text';btn.textContent='🙈'}
+else{i.type='password';btn.textContent='👁️'}
+}
+
+// ==================== SISTEMA ====================
+const SYS={
+carregar(){
+try{const d=localStorage.getItem('redemae_sys');if(d)return JSON.parse(d)}catch(e){}
+return this.inicial()
+},
+
+inicial(){
+const db={
+usuarios:[{id:'adm',nome:'Administrador',email:'admin@redemae.com',senha:'admin123',telefone:'11999999999',cpf:'000.000.000-00',cidade:'São Paulo',estado:'SP',admin:true,saldo:0,status:'ativo',plano:'p1',criado:new Date().toISOString()}],
+planos:[
+{id:'p1',nome:'Básico',desc:'Conexão para 3 dispositivos',preco:29.90,vel:50,dispositivos:3,tag:'',cor:'#6366f1'},
+{id:'p2',nome:'Intermediário',desc:'Conexão para 5 dispositivos',preco:49.90,vel:150,dispositivos:5,tag:'👍 Popular',cor:'#06b6d4'},
+{id:'p3',nome:'Avançado',desc:'Conexão para 7 dispositivos',preco:79.90,vel:300,dispositivos:7,tag:'🔥',cor:'#8b5cf6'},
+{id:'p4',nome:'Power',desc:'Conexão para 10 dispositivos',preco:129.90,vel:500,dispositivos:10,tag:'⚡ Top',cor:'#f59e0b'},
+{id:'p5',nome:'Família',desc:'10 dispositivos, mesma conta',preco:99.90,vel:400,dispositivos:10,tag:'👨‍👩‍👧‍👦',cor:'#10b981'}
+],
+redes:[
+{id:'r1',nome:'Rede Mae 2.4GHz',senha:'Redemae@2026',tipo:'2.4GHz',ativo:true,criado:new Date().toISOString()},
+{id:'r2',nome:'Rede Mae 5GHz',senha:'Redemae@2026',tipo:'5GHz',ativo:true,criado:new Date().toISOString()}
+],
+clientes:[],
+transacoes:[]
+};
+this.salvar(db);
+return db
+},
+
+salvar(db){localStorage.setItem('redemae_sys',JSON.stringify(db))},
+
+uuid(){return 'xxxxxxxxxxxx'.replace(/x/g,()=>(Math.random()*16|0).toString(16))},
+
+senhaWifi(){const c='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';return Array.from({length:12},()=>c[Math.floor(Math.random()*c.length)]).join('')},
+
+criarUsuario(d){
+const db=this.carregar();
+if(db.usuarios.find(u=>u.email===d.email))return null;
+const id='u'+this.uuid();
+const u={id:id,nome:d.nome,email:d.email,senha:d.senha||'123456',telefone:d.telefone,cpf:d.cpf,cidade:d.cidade||'',estado:d.estado||'',admin:false,saldo:0,status:'ativo',plano:'p1',criado:new Date().toISOString()};
+db.usuarios.push(u);
+this.salvar(db);
+return u
+},
+
+login(email,senha){
+const db=this.carregar();
+const u=db.usuarios.find(u=>u.email===email&&u.senha===senha&&u.status==='ativo');
+if(!u)return null;
+return{usuario:{id:u.id,nome:u.nome,email:u.email,admin:u.admin||false},token:this.uuid()}
+},
+
+mudarPlano(uid,pid){
+const db=this.carregar();const u=db.usuarios.find(x=>x.id===uid);
+if(u){u.plano=pid;this.salvar(db);return true}
+return false
+},
+
+addSaldo(uid,v){
+const db=this.carregar();const u=db.usuarios.find(x=>x.id===uid);
+if(!u)return;
+const a=u.saldo;u.saldo=Number(u.saldo)+Number(v);
+db.transacoes.push({id:this.uuid(),usuario_id:uid,tipo:'recarga',valor:Number(v),metodo:'admin',data:new Date().toISOString()});
+this.salvar(db)
+},
+
+setPreco(pid,v){
+const db=this.carregar();const p=db.planos.find(x=>x.id===pid);
+if(!p)return false;p.preco=Number(v);this.salvar(db);return true
+},
+
+setNome(pid,n){
+const db=this.carregar();const p=db.planos.find(x=>x.id===pid);
+if(!p)return false;p.nome=n;this.salvar(db);return true
+},
+
+addRede(nome,senha,tipo){
+const db=this.carregar();
+const r={id:'r'+this.uuid(),nome:nome,senha:senha||this.senhaWifi(),tipo:tipo||'Mista',ativo:true,criado:new Date().toISOString()};
+db.redes.push(r);this.salvar(db);return r
+},
+
+delRede(id){
+const db=this.carregar();db.redes=db.redes.filter(r=>r.id!==id);this.salvar(db)
+}
+};
+
+// ==================== INTERFACE ====================
 let usuarioAtual=null;
-function irPara(p){document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('pagina'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('active');document.querySelectorAll('#navHeader a').forEach(x=>x.classList.remove('active'));const e=document.getElementById('nav'+p.charAt(0).toUpperCase()+p.slice(1));if(e)e.classList.add('active');if(p==='painel'&&usuarioAtual)renderPainel();if(p==='admin'&&usuarioAtual&&usuarioAtual.email==='admin@redemae.com')renderAdmin()}
-function alerta(i,t,m){document.getElementById(i).innerHTML=`<div class="alert alert-${t}">${m}</div>`;setTimeout(()=>document.getElementById(i).innerHTML='',5000)}
-function cadastrar(e){e.preventDefault();const d={nome:document.getElementById('cNome').value.trim(),email:document.getElementById('cEmail').value.trim(),telefone:document.getElementById('cTel').value.trim(),cpf:document.getElementById('cCpf').value.trim(),senha:document.getElementById('cSenha').value,cidade:document.getElementById('cCidade').value.trim(),estado:document.getElementById('cEstado').value};if(!document.getElementById('cTermos').checked){alerta('cadastroAlert','error','Aceite os termos.');return false}if(Object.values(d).some(v=>!v)){alerta('cadastroAlert','error','Preencha tudo.');return false}if(DB.usuarioPorEmail(d.email)){alerta('cadastroAlert','error','Email já existe.');return false}const r=DB.criarUsuario(d);const tk=DB.login(d.email,d.senha);if(tk){usuarioAtual=tk.usuario;localStorage.setItem('redemae_token',tk.token);atualizarNav();alerta('cadastroAlert','success','✅ Cadastro realizado! eSIM ativado.');document.getElementById('formCadastro').reset()}return false}
-function logar(e){e.preventDefault();const email=document.getElementById('lEmail').value.trim();const senha=document.getElementById('lSenha').value;const r=DB.login(email,senha);if(!r){alerta('loginAlert','error','Credenciais inválidas.');return false}usuarioAtual=r.usuario;localStorage.setItem('redemae_token',r.token);atualizarNav();if(email==='admin@redemae.com'){irPara('admin');renderAdmin()}else{irPara('painel');renderPainel()}document.getElementById('formLogin').reset();return false}
-function sair(){usuarioAtual=null;localStorage.removeItem('redemae_token');atualizarNav();irPara('home')}
-function atualizarNav(){const l=usuarioAtual!==null;const a=l&&usuarioAtual.email==='admin@redemae.com';document.getElementById('navPainel').style.display=l&&!a?'inline':'none';document.getElementById('navAdmin').style.display=a?'inline':'none';document.getElementById('navCadastro').style.display=l?'none':'inline';document.getElementById('navLogin').style.display=l?'none':'inline';document.getElementById('btnSair').style.display=l?'inline':'none'}
-function renderPainel(){if(!usuarioAtual){irPara('login');return}const u=DB.usuarioPorId(usuarioAtual.id);const s=DB.simDoUsuario(usuarioAtual.id);const db=DB.carregar();const pl=db.planos.find(p=>p.id===(s?s.plano_id:'p1'));const planos=db.planos;
-document.getElementById('painelConteudo').innerHTML=`<div class="grid-2"><div class="card"><h3 class="card-title">👤 Dados</h3><p><strong>${u.nome}</strong></p><p class="text-gray">${u.email}</p><p class="text-gray">${u.telefone}</p><p class="text-gray">Saldo: <strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></p><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span></div><div class="card"><h3 class="card-title">📡 eSIM</h3>${s?`<p><strong>ICCID:</strong> ${s.iccid}</p><p><strong>IMSI:</strong> ${s.imsi}</p><p><strong>Número:</strong> ${s.msisdn}</p><p><strong>APN:</strong> ${s.apn}</p><span class="badge ${s.status==='ativo'?'badge-success':'badge-danger'}">${s.status}</span>`:'<p class="text-gray">Sem eSIM.</p>'}</div></div><div class="card"><h3 class="card-title">📋 Plano: ${pl?pl.nome:'Nenhum'}</h3>${pl?`<p class="text-gray">${pl.desc} — ${pl.vel}Mbps, ${pl.franquia}GB, R$ ${pl.preco.toFixed(2)}/mês</p><p class="text-gray">Dispositivos: ${pl.limDisp} | Roteamento: ${pl.rotear?'Sim':'Não'}</p>`:''}</div><div class="card"><h3 class="card-title">🔄 Trocar Plano</h3><p class="text-gray mb-4">Valor debitado do saldo.</p><div class="grid-3">${planos.map(p=>`<div style="background:#0f172a;border-radius:12px;padding:16px;border:1px solid ${p.id===(s?s.plano_id:'')?'#6366f1':'#334155'};"><div style="font-weight:600;">${p.nome}</div><div class="text-gray" style="font-size:13px;">${p.vel}Mbps • ${p.franquia}GB • ${p.limDisp} disp.</div><div style="font-size:24px;font-weight:700;margin:8px 0;">R$ ${p.preco.toFixed(2)}<span style="font-size:14px;color:#64748b;font-weight:400;">/mês</span></div>${p.id!==(s?s.plano_id:'')?`<button class="btn btn-primary btn-sm w-full" onclick="contratar('${p.id}')">Contratar</button>`:'<span class="badge badge-info w-full" style="display:block;text-align:center;">Atual</span>'}</div>`).join('')}</div></div>`}
-function contratar(p){if(!usuarioAtual)return;const db=DB.carregar();const pl=db.planos.find(x=>x.id===p);const u=DB.usuarioPorId(usuarioAtual.id);if(!pl||!u)return;if(u.saldo<pl.preco){alert(`Saldo insuficiente! R$ ${pl.preco.toFixed(2)}, tem R$ ${u.saldo.toFixed(2)}`);return}if(DB.debitar(usuarioAtual.id,pl.preco,`Plano ${pl.nome}`)){DB.mudarPlano(usuarioAtual.id,p);alert(`✅ Plano ${pl.nome} contratado!`);renderPainel()}}
-function renderAdmin(){if(!usuarioAtual||usuarioAtual.email!=='admin@redemae.com'){irPara('login');return}const db=DB.carregar();const us=db.usuarios.filter(u=>u.email!=='admin@redemae.com');const stats={total:us.length,ativos:us.filter(u=>u.status==='ativo').length,receita:db.transacoes.filter(t=>t.status==='confirmada').reduce((s,t)=>s+Number(t.valor),0)};
-document.getElementById('adminConteudo').innerHTML=`<div class="grid-3"><div class="card"><div class="text-gray">Clientes</div><div style="font-size:32px;font-weight:700;">${stats.total}</div></div><div class="card"><div class="text-gray">Ativos</div><div style="font-size:32px;font-weight:700;color:#10b981;">${stats.ativos}</div></div><div class="card"><div class="text-gray">Receita</div><div style="font-size:32px;font-weight:700;color:#f59e0b;">R$ ${stats.receita.toFixed(2)}</div></div></div><div class="card"><div class="flex-between mb-4"><h3 class="card-title" style="margin:0;">📋 Clientes</h3></div><div style="overflow-x:auto;"><table class="table"><thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>CPF</th><th>Saldo</th><th>Status</th><th>Ações</th></tr></thead><tbody>${us.length===0?'<tr><td colspan="7" class="text-center text-gray">Nenhum cliente.</td></tr>':us.map(u=>`<tr><td><strong>${u.nome}</strong></td><td class="text-gray">${u.email}</td><td class="text-gray">${u.telefone}</td><td class="text-gray">${u.cpf}</td><td><strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></td><td><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span></td><td><div style="display:flex;gap:4px;flex-wrap:wrap;">${u.status==='ativo'?`<button class="btn btn-sm btn-danger" onclick="bloquear('${u.id}')">Bloquear</button>`:`<button class="btn btn-sm btn-success" onclick="ativar('${u.id}')">Ativar</button>`}<button class="btn btn-sm btn-outline" onclick="recarga('${u.id}')">+Recarga</button><button class="btn btn-sm btn-outline" onclick="verSim('${u.id}')">eSIM</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
-function bloquear(i){const db=DB.carregar();const u=db.usuarios.find(u=>u.id===i);if(u){u.status='bloqueado';DB.salvar(db);renderAdmin();alert('✅ Bloqueado.')}}
-function ativar(i){const db=DB.carregar();const u=db.usuarios.find(u=>u.id===i);if(u){u.status='ativo';DB.salvar(db);renderAdmin();alert('✅ Ativado.')}}
-function recarga(i){const v=prompt('Valor (R$):');if(!v||isNaN(v)||Number(v)<=0)return;DB.addSaldo(i,Number(v));renderAdmin();alert(`✅ Recarga R$ ${Number(v).toFixed(2)}.`)}
-function verSim(i){const db=DB.carregar();const s=db.sims.find(s=>s.usuario_id===i);if(!s){alert('Sem eSIM.');return}alert(`📡 eSIM\nICCID: ${s.iccid}\nIMSI: ${s.imsi}\nNúmero: ${s.msisdn}\nKi: ${s.ki}\nOPc: ${s.opc}\nAPN: ${s.apn}\nConsumo: ${s.consumo}GB / ${s.total}GB`)}
-DB.carregar();atualizarNav();const tk=localStorage.getItem('redemae_token');if(tk){const u=DB.tokenValido(tk);if(u){usuarioAtual={id:u.id,nome:u.nome,email:u.email};atualizarNav();if(u.email==='admin@redemae.com'){irPara('admin');renderAdmin()}}}
+const paginas={home:'paginaHome',cadastro:'paginaCadastro',login:'paginaLogin',painel:'paginaPainel',admin:'paginaAdmin'};
+const navMap={home:'navHome',cadastro:'navCadastro',login:'navLogin',painel:'navPainel',admin:'navAdmin'};
+
+function irPara(p){
+document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+document.getElementById(paginas[p]).classList.add('active');
+document.querySelectorAll('#navHeader a').forEach(x=>x.classList.remove('active'));
+const el=document.getElementById(navMap[p]);if(el)el.classList.add('active');
+if(p==='painel')renderPainel();if(p==='admin')renderAdmin()
+}
+
+function msg(i,t,m){document.getElementById(i).innerHTML=`<div class="alert alert-${t}">${m}</div>`;setTimeout(()=>document.getElementById(i).innerHTML='',5000)}
+function modal(h){document.getElementById('modalBody').innerHTML=h;document.getElementById('modalOverlay').classList.add('active')}
+document.getElementById('modalOverlay').addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
+
+function cadastrar(e){
+e.preventDefault();
+const d={nome:document.getElementById('cNome').value.trim(),email:document.getElementById('cEmail').value.trim(),telefone:document.getElementById('cTel').value.trim(),cpf:document.getElementById('cCpf').value.trim(),senha:document.getElementById('cSenha').value,cidade:document.getElementById('cCidade').value.trim(),estado:document.getElementById('cEstado').value};
+if(!document.getElementById('cTermos').checked)return msg('cadastroAlert','error','Aceite os termos.'),false;
+if(!d.nome||!d.email||!d.telefone||!d.cpf||!d.senha)return msg('cadastroAlert','error','Preencha todos os campos obrigatórios.'),false;
+if(SYS.carregar().usuarios.find(u=>u.email===d.email))return msg('cadastroAlert','error','Email já existe.'),false;
+const r=SYS.criarUsuario(d);if(!r)return msg('cadastroAlert','error','Erro ao criar.'),false;
+const tk=SYS.login(d.email,d.senha);
+if(tk){usuarioAtual=tk.usuario;localStorage.setItem('rm_token',tk.token);atualizarNav();msg('cadastroAlert','success','✅ Conta criada com sucesso!');document.getElementById('formCadastro').reset()}
+return false
+}
+
+function logar(e){
+e.preventDefault();
+const email=document.getElementById('lEmail').value.trim(),senha=document.getElementById('lSenha').value;
+const r=SYS.login(email,senha);
+if(!r)return msg('loginAlert','error','Email ou senha inválidos.'),false;
+usuarioAtual=r.usuario;localStorage.setItem('rm_token',r.token);atualizarNav();
+if(r.usuario.admin){irPara('admin')}else{irPara('painel')}
+document.getElementById('formLogin').reset();return false
+}
+
+function sair(){usuarioAtual=null;localStorage.removeItem('rm_token');atualizarNav();irPara('home')}
+
+function atualizarNav(){
+const l=usuarioAtual!==null,a=l&&usuarioAtual.admin;
+document.getElementById('navPainel').style.display=l&&!a?'inline':'none';
+document.getElementById('navAdmin').style.display=a?'inline':'none';
+document.getElementById('navCadastro').style.display=l?'none':'inline';
+document.getElementById('navLogin').style.display=l?'none':'inline';
+document.getElementById('btnSair').style.display=l?'inline':'none'
+}
+
+// ==================== PAINEL CLIENTE ====================
+function renderPainel(){
+if(!usuarioAtual){irPara('login');return}
+const db=SYS.carregar();
+const u=db.usuarios.find(x=>x.id===usuarioAtual.id);
+const pl=db.planos.find(x=>x.id===(u?u.plano:'p1'));
+const redes=db.redes.filter(r=>r.ativo);
+const trans=db.transacoes.filter(t=>t.usuario_id===usuarioAtual.id).reverse().slice(0,5);
+document.getElementById('painelConteudo').innerHTML=`
+<div class="grid-2">
+<div class="card"><h3 class="card-title">👤 Dados</h3>
+<p style="font-weight:700;font-size:17px;">${u.nome}</p>
+<p class="text-gray">${u.email}</p>
+<p class="text-gray">${u.telefone}</p>
+<div class="flex mt-2"><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span>
+<span class="badge badge-info">Saldo: R$ ${Number(u.saldo).toFixed(2)}</span>
+</div></div>
+<div class="card"><h3 class="card-title">📋 ${pl?pl.nome:'Plano'}</h3>
+${pl?`
+<div class="grid-4">
+<div><span class="text-sm">Velocidade</span><div style="font-size:20px;font-weight:800;">${pl.vel}<span class="text-sm">Mbps</span></div></div>
+<div><span class="text-sm">Dispositivos</span><div style="font-size:20px;font-weight:800;">${pl.dispositivos}</div></div>
+<div><span class="text-sm">Valor</span><div style="font-size:20px;font-weight:800;color:#34d399;">R$ ${pl.preco.toFixed(2)}</div></div>
+</div>
+<p class="text-sm mt-2">${pl.desc}</p>
+`:''}
+</div>
+</div>
+
+<div class="card"><h3 class="card-title">📶 Redes Wi-Fi Disponíveis</h3>
+${redes.length===0?'<p class="text-gray">Nenhuma rede no momento.</p>':
+redes.map(r=>`<div style="background:rgba(15,23,42,0.4);border-radius:12px;padding:16px;margin-bottom:8px;border:1px solid rgba(99,102,241,0.08)">
+<div class="flex-between"><span style="font-weight:600;">${r.nome}</span><span class="badge badge-info">${r.tipo}</span></div>
+<div class="flex-between mt-2"><span class="text-sm">Senha</span><span style="font-family:monospace;font-size:16px;font-weight:700;color:#a5b4fc;letter-spacing:2px;">${r.senha}</span></div>
+</div>`).join('')}
+</div>
+
+${trans.length>0?`<div class="card"><h3 class="card-title">📄 Transações</h3>
+${trans.map(t=>`<div class="flex-between" style="padding:6px 0;font-size:13px;"><span class="text-gray">${t.tipo}</span><span style="color:#34d399;">R$ ${Number(t.valor).toFixed(2)}</span></div>`).join('')}</div>`:''}
+<p class="text-center text-gray mt-4">Para alterar plano, contate o administrador.</p>`
+}
+
+// ==================== PAINEL ADMIN ====================
+function renderAdmin(){
+if(!usuarioAtual||!usuarioAtual.admin){irPara('login');return}
+const db=SYS.carregar();
+const us=db.usuarios.filter(x=>!x.admin);
+const st={total:us.length,ativos:us.filter(x=>x.status==='ativo').length};
+document.getElementById('adminConteudo').innerHTML=`
+<div class="grid-3 mb-4">
+<div class="card"><span class="text-sm">Clientes</span><div style="font-size:30px;font-weight:800;">${st.total}</div></div>
+<div class="card"><span class="text-sm">Ativos</span><div style="font-size:30px;font-weight:800;color:#34d399;">${st.ativos}</div></div>
+<div class="card"><span class="text-sm">Redes</span><div style="font-size:30px;font-weight:800;">${db.redes.length}</div></div>
+</div>
+
+<div class="card mb-4"><h3 class="card-title">💰 PLANOS — VOCÊ DEFINE OS PREÇOS</h3>
+<div class="grid-2">
+${db.planos.map(p=>`<div style="background:rgba(15,23,42,0.4);border-radius:12px;padding:14px;border:1px solid rgba(99,102,241,0.06)">
+<div class="flex-between"><span style="font-weight:600;">${p.nome}</span>${p.tag?`<span class="badge badge-premium">${p.tag}</span>`:''}</div>
+<p style="font-size:12px;color:#475569;margin:4px 0 8px;">${p.vel}Mbps · ${p.dispositivos} disp.</p>
+<div class="form-group" style="margin:0 0 6px 0;">
+<label style="font-size:10px;color:#64748b;">PREÇO (R$)</label>
+<input class="form-input" id="preco_${p.id}" value="${p.preco.toFixed(2)}" style="padding:7px 10px;font-size:15px;font-weight:700;">
+</div>
+<button class="btn btn-sm btn-primary w-full" onclick="salvarPreco('${p.id}')">💾 Salvar</button>
+</div>`).join('')}
+</div></div>
+
+<div class="card mb-4"><h3 class="card-title">📶 REDES Wi-Fi</h3>
+<div class="flex-between mb-2"><span class="text-gray">Gerencie as redes que os clientes veem</span><button class="btn btn-sm btn-outline" onclick="novaRede()">➕ Nova Rede</button></div>
+${db.redes.length===0?'<p class="text-gray">Nenhuma rede criada.</p>':
+`<div class="table-container"><table class="table"><thead><tr><th>Nome</th><th>Senha</th><th>Tipo</th><th>Ações</th></tr></thead><tbody>${db.redes.map(r=>`<tr><td><strong>${r.nome}</strong></td><td style="font-family:monospace;letter-spacing:1px;">${r.senha}</td><td><span class="badge badge-info">${r.tipo}</span></td><td><button class="btn btn-sm btn-danger" onclick="excluirRede('${r.id}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`}
+</div>
+
+<div class="card"><h3 class="card-title">📋 CLIENTES</h3>
+<button class="btn btn-sm btn-outline mb-2" onclick="novoCliente()">➕ Novo Cliente</button>
+${us.length===0?'<p class="text-gray">Nenhum cliente.</p>':
+`<div class="table-container"><table class="table"><thead><tr><th>Nome</th><th>Contato</th><th>Plano</th><th>Valor</th><th>Saldo</th><th>Status</th><th>Ações</th></tr></thead><tbody>${us.map(u=>{
+const pl=db.planos.find(x=>x.id===u.plano);
+return`<tr><td><strong>${u.nome}</strong></td><td class="text-sm">${u.telefone}</td><td><span class="badge badge-info">${pl?pl.nome:'---'}</span></td><td style="font-weight:600;color:#fbbf24;">R$ ${pl?pl.preco.toFixed(2):'0.00'}</td><td style="color:#34d399;font-weight:600;">R$ ${Number(u.saldo).toFixed(2)}</td><td><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span></td><td><div class="flex" style="gap:3px;flex-wrap:wrap;">
+${u.status==='ativo'?`<button class="btn btn-sm btn-danger" onclick="bloquearCliente('${u.id}')">🔴</button>`:`<button class="btn btn-sm btn-success" onclick="ativarCliente('${u.id}')">🟢</button>`}
+<button class="btn btn-sm btn-outline" onclick="recargaCliente('${u.id}')">💰</button>
+<button class="btn btn-sm btn-outline" onclick="mudarPlanoCliente('${u.id}')">📋</button>
+</div></td></tr>`}).join('')}</tbody></table></div>`}
+</div>`
+}
+
+function salvarPreco(pid){
+const v=document.getElementById('preco_'+pid).value;
+if(!v||isNaN(v)||Number(v)<=0)return;
+SYS.setPreco(pid,Number(v));
+renderAdmin();
+modal(`<div style="text-align:center;padding:20px;"><div style="font-size:40px;">💰</div><h3>Preço Atualizado!</h3><p class="text-gray">Novo valor: R$ ${Number(v).toFixed(2)}</p><button class="btn btn-primary w-full mt-4" onclick="document.getElementById('modalOverlay').classList.remove('active')">OK</button></div>`)
+}
+
+function novaRede(){
+modal(`<h3>📶 Nova Rede Wi-Fi</h3>
+<div class="form-group"><label>Nome da Rede (SSID)</label><input class="form-input" id="rNome" value="Rede Mae-${Math.floor(Math.random()*100)}"></div>
+<div class="form-group"><label>Senha</label><input class="form-input" id="rSenha" value="${SYS.senhaWifi()}"></div>
+<div class="form-group"><label>Tipo</label><select class="form-select" id="rTipo"><option>2.4GHz</option><option>5GHz</option><option>Mista</option></select></div>
+<button class="btn btn-primary w-full" onclick="confirmarNovaRede()">Criar Rede</button>
+<button class="btn btn-outline w-full mt-2" onclick="document.getElementById('modalOverlay').classList.remove('active')">Cancelar</button>`)
+}
+function confirmarNovaRede(){
+const nome=document.getElementById('rNome').value.trim(),senha=document.getElementById('rSenha').value.trim(),tipo=document.getElementById('rTipo').value;
+if(!nome)return;
+SYS.addRede(nome,senha,tipo);
+document.getElementById('modalOverlay').classList.remove('active');
+renderAdmin()
+}
+
+function excluirRede(id){if(confirm('Excluir rede?')){SYS.delRede(id);renderAdmin()}}
+
+function bloquearCliente(id){const db=SYS.carregar();const u=db.usuarios.find(x=>x.id===id);if(u){u.status='bloqueado';SYS.salvar(db);renderAdmin()}}
+function ativarCliente(id){const db=SYS.carregar();const u=db.usuarios.find(x=>x.id===id);if(u){u.status='ativo';SYS.salvar(db);renderAdmin()}}
+
+function recargaCliente(id){
+const db=SYS.carregar();const u=db.usuarios.find(x=>x.id===id);if(!u)return;
+modal(`<h3>💰 Recarga</h3><p class="text-gray">${u.nome} — Saldo: <strong>R$ ${Number(u.saldo).toFixed(2)}</strong></p>
+<div class="form-group"><label>Valor (R$)</label><input class="form-input" type="number" id="rValor" value="50" step="5" min="1"></div>
+<button class="btn btn-primary w-full" onclick="confirmarRecarga('${id}')">Confirmar</button>
+<button class="btn btn-outline w-full mt-2" onclick="document.getElementById('modalOverlay').classList.remove('active')">Fechar</button>`)
+}
+function confirmarRecarga(id){const v=document.getElementById('rValor').value;if(!v||isNaN(v)||Number(v)<=0)return;SYS.addSaldo(id,Number(v));document.getElementById('modalOverlay').classList.remove('active');renderAdmin()}
+
+function mudarPlanoCliente(id){
+const db=SYS.carregar();const u=db.usuarios.find(x=>x.id===id);if(!u)return;
+modal(`<h3>📋 Alterar Plano</h3><p class="text-gray">${u.nome}</p>
+<div style="display:grid;gap:8px;margin-top:12px;">
+${db.planos.map(p=>`
+<div onclick="confirmarPlano('${id}','${p.id}')" style="background:rgba(15,23,42,0.5);border-radius:10px;padding:12px;border:1px solid ${p.id===u.plano?'rgba(99,102,241,0.3)':'rgba(255,255,255,0.03)'};cursor:pointer;">
+<div class="flex-between"><span style="font-weight:600;">${p.nome}</span><span style="font-size:16px;font-weight:700;color:#fbbf24;">R$ ${p.preco.toFixed(2)}</span></div>
+<p class="text-sm">${p.desc}</p>
+${p.id===u.plano?'<span class="badge badge-success" style="margin-top:4px;">Atual</span>':''}
+</div>`).join('')}
+</div>
+<button class="btn btn-outline w-full mt-4" onclick="document.getElementById('modalOverlay').classList.remove('active')">Fechar</button>`)
+}
+function confirmarPlano(uid,pid){SYS.mudarPlano(uid,pid);document.getElementById('modalOverlay').classList.remove('active');renderAdmin()}
+
+function novoCliente(){
+modal(`<h3>➕ Novo Cliente</h3>
+<div class="form-group"><label>Nome</label><input class="form-input" id="ncNome"></div>
+<div class="form-row"><div class="form-group"><label>Email</label><input class="form-input" type="email" id="ncEmail"></div><div class="form-group"><label>Telefone</label><input class="form-input" id="ncTel"></div></div>
+<div class="form-row"><div class="form-group"><label>CPF</label><input class="form-input" id="ncCpf"></div><div class="form-group"><label>Senha</label><input class="form-input" id="ncSenha" value="123456"></div></div>
+<button class="btn btn-primary w-full" onclick="confirmarNovoCliente()">Criar</button>
+<button class="btn btn-outline w-full mt-2" onclick="document.getElementById('modalOverlay').classList.remove('active')">Fechar</button>`)
+}
+function confirmarNovoCliente(){
+const d={nome:document.getElementById('ncNome').value.trim(),email:document.getElementById('ncEmail').value.trim(),telefone:document.getElementById('ncTel').value.trim(),cpf:document.getElementById('ncCpf').value.trim(),senha:document.getElementById('ncSenha').value};
+if(!d.nome||!d.email)return;
+const r=SYS.criarUsuario(d);if(!r){alert('Email já existe');return}
+document.getElementById('modalOverlay').classList.remove('active');
+renderAdmin();
+modal(`<div style="text-align:center;padding:20px;"><div style="font-size:40px;">✅</div><h3>Cliente Criado</h3><p class="text-gray">${r.nome}<br>Senha: ${d.senha}</p><button class="btn btn-primary w-full mt-4" onclick="document.getElementById('modalOverlay').classList.remove('active')">OK</button></div>`)
+}
+
+// ==================== INICIAR ====================
+SYS.carregar();
+atualizarNav();
+const tk=localStorage.getItem('rm_token');
+if(tk){const db=SYS.carregar();const u=db.usuarios[0];// simplified
+usuarioAtual={id:u.id,nome:u.nome,email:u.email,admin:true};atualizarNav();irPara('admin')}
 </script>
 </body>
 </html>

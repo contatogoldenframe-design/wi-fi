@@ -3,597 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rede Mãe — Sistema Completo</title>
+<title>Rede Mãe — Oficial</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Segoe UI',Arial,sans-serif; background:#0f172a; color:#fff; min-height:100vh; }
-.container { max-width:1200px; margin:0 auto; padding:20px; }
-
-/* HEADER */
-.header { background:rgba(15,23,42,0.95); border-bottom:1px solid rgba(255,255,255,0.1); padding:16px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
-.logo { display:flex; align-items:center; gap:10px; font-size:22px; font-weight:700; }
-.logo-icon { width:36px; height:36px; background:linear-gradient(135deg,#6366f1,#06b6d4); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; }
-.nav { display:flex; gap:8px; flex-wrap:wrap; }
-.nav a, .nav button { color:#94a3b8; text-decoration:none; padding:8px 16px; border-radius:8px; border:none; background:none; cursor:pointer; font-size:14px; font-family:inherit; transition:0.3s; }
-.nav a:hover, .nav button:hover { color:#fff; background:rgba(255,255,255,0.05); }
-.nav a.active, .nav button.active { color:#818cf8; background:rgba(99,102,241,0.15); }
-
-/* CARDS */
-.card { background:#1e293b; border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:24px; margin-bottom:16px; }
-.card-title { font-size:18px; font-weight:600; margin-bottom:16px; }
-
-/* FORM */
-.form-group { margin-bottom:16px; }
-.form-group label { display:block; font-size:14px; color:#94a3b8; margin-bottom:6px; }
-.form-input, .form-select { width:100%; padding:12px 16px; background:#0f172a; border:1px solid #334155; border-radius:10px; color:#fff; font-size:15px; font-family:inherit; transition:0.3s; }
-.form-input:focus, .form-select:focus { outline:none; border-color:#6366f1; box-shadow:0 0 0 3px rgba(99,102,241,0.2); }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-@media(max-width:600px){.form-row{grid-template-columns:1fr;}}
-
-/* BUTTONS */
-.btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:10px; font-weight:600; font-size:15px; border:none; cursor:pointer; font-family:inherit; transition:0.3s; }
-.btn-primary { background:linear-gradient(135deg,#6366f1,#4f46e5); color:#fff; }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(99,102,241,0.4); }
-.btn-outline { background:transparent; color:#fff; border:1px solid #334155; }
-.btn-outline:hover { border-color:#6366f1; color:#818cf8; }
-.btn-danger { background:#ef4444; color:#fff; }
-.btn-success { background:#10b981; color:#fff; }
-.btn-sm { padding:8px 16px; font-size:13px; }
-.btn-lg { padding:14px 32px; font-size:17px; }
-.w-full { width:100%; justify-content:center; }
-
-/* GRID */
-.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
-@media(max-width:700px){.grid-2{grid-template-columns:1fr;}}
-
-/* TABELA */
-.table { width:100%; border-collapse:collapse; }
-.table th { text-align:left; padding:12px 16px; font-size:12px; color:#64748b; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid rgba(255,255,255,0.08); }
-.table td { padding:12px 16px; font-size:14px; border-bottom:1px solid rgba(255,255,255,0.05); }
-.table tr:hover td { background:rgba(99,102,241,0.05); }
-
-.badge { display:inline-flex; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600; }
-.badge-success { background:rgba(16,185,129,0.2); color:#10b981; }
-.badge-danger { background:rgba(239,68,68,0.2); color:#ef4444; }
-.badge-warning { background:rgba(245,158,11,0.2); color:#f59e0b; }
-.badge-info { background:rgba(99,102,241,0.2); color:#818cf8; }
-
-.alert { padding:12px 16px; border-radius:10px; margin-bottom:16px; font-size:14px; }
-.alert-error { background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; }
-.alert-success { background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#6ee7b7; }
-
-.tab-content { display:none; }
-.tab-content.active { display:block; animation:fadeIn 0.3s; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-.text-center { text-align:center; }
-.text-gray { color:#94a3b8; font-size:14px; }
-.mt-4 { margin-top:16px; }
-.mb-4 { margin-bottom:16px; }
-.flex { display:flex; align-items:center; gap:8px; }
-.flex-between { display:flex; justify-content:space-between; align-items:center; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,'Segoe UI',Arial,sans-serif;background:#0f172a;color:#fff;min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.header{background:rgba(15,23,42,0.95);border-bottom:1px solid rgba(255,255,255,0.1);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#06b6d4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a,.nav button{color:#94a3b8;text-decoration:none;padding:8px 16px;border-radius:8px;border:none;background:none;cursor:pointer;font-size:14px;font-family:inherit;transition:0.3s}
+.nav a:hover,.nav button:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav a.active{color:#818cf8;background:rgba(99,102,241,0.15)}
+.card{background:#1e293b;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:16px}
+.card-title{font-size:18px;font-weight:600;margin-bottom:16px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:14px;color:#94a3b8;margin-bottom:6px}
+.form-input,.form-select{width:100%;padding:12px 16px;background:#0f172a;border:1px solid #334155;border-radius:10px;color:#fff;font-size:15px;font-family:inherit;transition:0.3s}
+.form-input:focus,.form-select:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.2)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;border:none;cursor:pointer;font-family:inherit;transition:0.3s}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,102,241,0.4)}
+.btn-outline{background:transparent;color:#fff;border:1px solid #334155}
+.btn-outline:hover{border-color:#6366f1;color:#818cf8}
+.btn-danger{background:#ef4444;color:#fff}
+.btn-success{background:#10b981;color:#fff}
+.btn-sm{padding:8px 16px;font-size:13px}
+.btn-lg{padding:14px 32px;font-size:17px}
+.w-full{width:100%;justify-content:center}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+@media(max-width:700px){.grid-2{grid-template-columns:1fr}}
+.table{width:100%;border-collapse:collapse}
+.table th{text-align:left;padding:12px 16px;font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.table td{padding:12px 16px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.table tr:hover td{background:rgba(99,102,241,0.05)}
+.badge{display:inline-flex;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600}
+.badge-success{background:rgba(16,185,129,0.2);color:#10b981}
+.badge-danger{background:rgba(239,68,68,0.2);color:#ef4444}
+.badge-info{background:rgba(99,102,241,0.2);color:#818cf8}
+.alert{padding:12px 16px;border-radius:10px;margin-bottom:16px;font-size:14px}
+.alert-error{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#fca5a5}
+.alert-success{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.text-center{text-align:center}
+.text-gray{color:#94a3b8;font-size:14px}
+.mt-4{margin-top:16px}
+.mb-4{margin-bottom:16px}
+.flex{display:flex;align-items:center;gap:8px}
+.flex-between{display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
-
 <div id="app">
-    <!-- HEADER -->
-    <header class="header">
-        <div class="logo">
-            <div class="logo-icon">RM</div>
-            <span>Rede Mãe</span>
-        </div>
-        <nav class="nav" id="navHeader">
-            <a href="#" onclick="mostrarPagina('home')" class="active" id="navHome">Início</a>
-            <a href="#" onclick="mostrarPagina('cadastro')" id="navCadastro">Cadastro</a>
-            <a href="#" onclick="mostrarPagina('login')" id="navLogin">Login</a>
-            <a href="#" onclick="mostrarPagina('painel')" id="navPainel" style="display:none">Painel</a>
-            <a href="#" onclick="mostrarPagina('admin')" id="navAdmin" style="display:none">Admin</a>
-            <button onclick="sair()" id="btnSair" style="display:none">Sair</button>
-        </nav>
-    </header>
-
-    <div class="container">
-        <!-- HOME -->
-        <div class="tab-content active" id="paginaHome">
-            <div style="text-align:center;padding:60px 20px;">
-                <h1 style="font-size:48px;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#6366f1,#06b6d4,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Rede Mãe</h1>
-                <p style="font-size:20px;color:#94a3b8;max-width:600px;margin:0 auto 32px;">Sua operadora virtual de internet. Até 800Mbps, eSIM automático, modo roteador. Tudo pelo celular.</p>
-                <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                    <button class="btn btn-primary btn-lg" onclick="mostrarPagina('cadastro')">Ativar eSIM Grátis</button>
-                    <button class="btn btn-outline btn-lg" onclick="mostrarPagina('login')">Entrar</button>
-                </div>
-                <div style="display:flex;justify-content:center;gap:40px;margin-top:60px;flex-wrap:wrap;">
-                    <div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">800</div><div style="color:#64748b;font-size:14px;">Mbps máx</div></div>
-                    <div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div><div style="color:#64748b;font-size:14px;">Digital</div></div>
-                    <div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">5min</div><div style="color:#64748b;font-size:14px;">Ativação</div></div>
-                    <div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">∞</div><div style="color:#64748b;font-size:14px;">Dispositivos</div></div>
-                </div>
-            </div>
-
-            <div class="grid-3" style="margin-top:40px;">
-                <div class="card"><h3>📱 Cadastro rápido</h3><p style="color:#94a3b8;">2 minutos e seu eSIM está ativo.</p></div>
-                <div class="card"><h3>📡 Modo roteador</h3><p style="color:#94a3b8;">Seu celular vira um hotspot WiFi.</p></div>
-                <div class="card"><h3>👨‍👩‍👧‍👦 Plano Família</h3><p style="color:#94a3b8;">10 dispositivos, mesma conta, 400Mbps.</p></div>
-                <div class="card"><h3>🔒 Segurança</h3><p style="color:#94a3b8;">Criptografia de ponta a ponta.</p></div>
-                <div class="card"><h3>💳 Recarga via PIX</h3><p style="color:#94a3b8;">Gera QR Code na hora.</p></div>
-                <div class="card"><h3>🎮 Painel completo</h3><p style="color:#94a3b8;">Gerencie tudo online.</p></div>
-            </div>
-        </div>
-
-        <!-- CADASTRO -->
-        <div class="tab-content" id="paginaCadastro">
-            <div style="max-width:500px;margin:40px auto;">
-                <h2 style="margin-bottom:8px;">Criar conta</h2>
-                <p style="color:#94a3b8;margin-bottom:24px;">Preencha para ativar seu eSIM grátis.</p>
-                <div id="cadastroAlert"></div>
-                <form id="formCadastro" onsubmit="return cadastrar(event)">
-                    <div class="form-group"><label>Nome completo</label><input class="form-input" id="cNome" required></div>
-                    <div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="cEmail" required></div>
-                    <div class="form-group"><label>Telefone / WhatsApp</label><input class="form-input" id="cTel" required placeholder="(11)99999-9999"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label>CPF</label><input class="form-input" id="cCpf" required></div>
-                        <div class="form-group"><label>Senha</label><input class="form-input" type="password" id="cSenha" required minlength="4"></div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group"><label>Cidade</label><input class="form-input" id="cCidade" required></div>
-                        <div class="form-group"><label>Estado</label>
-                            <select class="form-select" id="cEstado" required>
-                                <option value="">Selecione</option>
-                                <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option>
-                                <option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option>
-                                <option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
-                                <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option>
-                                <option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option>
-                                <option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
-                                <option value="SP" selected>SP</option><option value="SE">SE</option><option value="TO">TO</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
-                        <input type="checkbox" id="cTermos" style="margin-top:4px;accent-color:#6366f1;">
-                        <label style="font-size:14px;color:#94a3b8;">Aceito os Termos de Uso e Política de Privacidade</label>
-                    </div>
-                    <button class="btn btn-primary btn-lg w-full" type="submit" id="btnCadastrar">Ativar meu eSIM Grátis</button>
-                </form>
-                <p class="text-center text-gray mt-4">Já tem conta? <a href="#" onclick="mostrarPagina('login')" style="color:#818cf8;text-decoration:none;">Fazer login</a></p>
-            </div>
-        </div>
-
-        <!-- LOGIN -->
-        <div class="tab-content" id="paginaLogin">
-            <div style="max-width:400px;margin:40px auto;">
-                <h2 style="margin-bottom:8px;">Entrar</h2>
-                <p style="color:#94a3b8;margin-bottom:24px;">Acesse sua conta Rede Mãe.</p>
-                <div id="loginAlert"></div>
-                <form id="formLogin" onsubmit="return logar(event)">
-                    <div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="lEmail" required></div>
-                    <div class="form-group"><label>Senha</label><input class="form-input" type="password" id="lSenha" required></div>
-                    <button class="btn btn-primary btn-lg w-full" type="submit">Entrar</button>
-                </form>
-                <p class="text-center text-gray mt-4">Não tem conta? <a href="#" onclick="mostrarPagina('cadastro')" style="color:#818cf8;text-decoration:none;">Cadastrar</a></p>
-            </div>
-        </div>
-
-        <!-- PAINEL DO CLIENTE -->
-        <div class="tab-content" id="paginaPainel">
-            <h2 style="margin-bottom:16px;">📊 Meu Painel</h2>
-            <div id="painelConteudo"></div>
-        </div>
-
-        <!-- ADMIN -->
-        <div class="tab-content" id="paginaAdmin">
-            <h2 style="margin-bottom:16px;">⚙️ Painel Administrativo</h2>
-            <div id="adminConteudo"></div>
-        </div>
-    </div>
+<header class="header">
+<div class="logo"><div class="logo-icon">RM</div><span>Rede Mãe</span></div>
+<nav class="nav" id="navHeader">
+<a href="#" onclick="irPara('home')" class="active" id="navHome">🏠 Início</a>
+<a href="#" onclick="irPara('cadastro')" id="navCadastro">📝 Cadastro</a>
+<a href="#" onclick="irPara('login')" id="navLogin">🔑 Login</a>
+<a href="#" onclick="irPara('painel')" id="navPainel" style="display:none">📊 Painel</a>
+<a href="#" onclick="irPara('admin')" id="navAdmin" style="display:none">⚙️ Admin</a>
+<button onclick="sair()" id="btnSair" style="display:none">🚪 Sair</button>
+</nav>
+</header>
+<div class="container">
+<div class="tab-content active" id="paginaHome">
+<div style="text-align:center;padding:60px 20px;">
+<h1 style="font-size:48px;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#6366f1,#06b6d4,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Rede Mãe</h1>
+<p style="font-size:20px;color:#94a3b8;max-width:600px;margin:0 auto 32px;">Sua operadora virtual de internet. Até 800Mbps, eSIM automático, modo roteador. <strong>Sem antena, sem instalação.</strong></p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+<button class="btn btn-primary btn-lg" onclick="irPara('cadastro')">📱 Ativar eSIM Grátis</button>
+<button class="btn btn-outline btn-lg" onclick="irPara('login')">🔑 Entrar</button>
 </div>
-
+<div style="display:flex;justify-content:center;gap:40px;margin-top:60px;flex-wrap:wrap;">
+<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">800</div><div style="color:#64748b;font-size:14px;">Mbps máx</div></div>
+<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">100%</div><div style="color:#64748b;font-size:14px;">Digital</div></div>
+<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">5min</div><div style="color:#64748b;font-size:14px;">Ativação</div></div>
+<div><div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">∞</div><div style="color:#64748b;font-size:14px;">Dispositivos</div></div>
+</div>
+</div>
+<div class="grid-3" style="margin-top:40px;">
+<div class="card"><h3>📱 Cadastro rápido</h3><p class="text-gray">2 minutos e seu eSIM está ativo.</p></div>
+<div class="card"><h3>📡 Modo roteador</h3><p class="text-gray">Seu celular vira um hotspot WiFi.</p></div>
+<div class="card"><h3>👨‍👩‍👧‍👦 Plano Família</h3><p class="text-gray">10 dispositivos, mesma conta, 400Mbps.</p></div>
+<div class="card"><h3>🔒 Segurança</h3><p class="text-gray">Criptografia de ponta a ponta.</p></div>
+<div class="card"><h3>💳 Recarga</h3><p class="text-gray">Via PIX ou pelo admin.</p></div>
+<div class="card"><h3>🎮 Painel completo</h3><p class="text-gray">Gerencie tudo online.</p></div>
+</div>
+</div>
+<div class="tab-content" id="paginaCadastro">
+<div style="max-width:500px;margin:40px auto;">
+<h2 style="margin-bottom:8px;">📝 Criar conta</h2>
+<p style="color:#94a3b8;margin-bottom:24px;">Preencha para ativar seu eSIM grátis.</p>
+<div id="cadastroAlert"></div>
+<form id="formCadastro" onsubmit="return cadastrar(event)">
+<div class="form-group"><label>Nome completo</label><input class="form-input" id="cNome" required></div>
+<div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="cEmail" required></div>
+<div class="form-group"><label>Telefone / WhatsApp</label><input class="form-input" id="cTel" required placeholder="(11)99999-9999"></div>
+<div class="form-row">
+<div class="form-group"><label>CPF</label><input class="form-input" id="cCpf" required></div>
+<div class="form-group"><label>Senha</label><input class="form-input" type="password" id="cSenha" required minlength="4"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>Cidade</label><input class="form-input" id="cCidade" required></div>
+<div class="form-group"><label>Estado</label>
+<select class="form-select" id="cEstado" required>
+<option value="">Selecione</option>
+<option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option>
+<option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option>
+<option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
+<option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option>
+<option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option>
+<option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
+<option value="SP" selected>SP</option><option value="SE">SE</option><option value="TO">TO</option>
+</select></div></div>
+<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
+<input type="checkbox" id="cTermos" style="margin-top:4px;accent-color:#6366f1;">
+<label style="font-size:14px;color:#94a3b8;">Aceito os Termos de Uso</label></div>
+<button class="btn btn-primary btn-lg w-full" type="submit">📱 Ativar meu eSIM Grátis</button>
+</form>
+<p class="text-center text-gray mt-4">Já tem conta? <a href="#" onclick="irPara('login')" style="color:#818cf8;text-decoration:none;">Fazer login</a></p>
+</div></div>
+<div class="tab-content" id="paginaLogin">
+<div style="max-width:400px;margin:40px auto;">
+<h2 style="margin-bottom:8px;">🔑 Entrar</h2>
+<p style="color:#94a3b8;margin-bottom:24px;">Acesse sua conta Rede Mãe.</p>
+<div id="loginAlert"></div>
+<form id="formLogin" onsubmit="return logar(event)">
+<div class="form-group"><label>E-mail</label><input class="form-input" type="email" id="lEmail" required></div>
+<div class="form-group"><label>Senha</label><input class="form-input" type="password" id="lSenha" required></div>
+<button class="btn btn-primary btn-lg w-full" type="submit">🔑 Entrar</button>
+</form>
+<p class="text-center text-gray mt-4">Não tem conta? <a href="#" onclick="irPara('cadastro')" style="color:#818cf8;text-decoration:none;">Cadastrar</a></p>
+</div></div>
+<div class="tab-content" id="paginaPainel"><h2 style="margin-bottom:16px;">📊 Meu Painel</h2><div id="painelConteudo"></div></div>
+<div class="tab-content" id="paginaAdmin"><h2 style="margin-bottom:16px;">⚙️ Administrativo</h2><div id="adminConteudo"></div></div>
+</div></div>
 <script>
-// ==================== BANCO DE DADOS LOCAL ====================
-const DB = {
-    _dados: null,
-    _carregar() {
-        if (!this._dados) {
-            const str = localStorage.getItem('rede_mae_db');
-            this._dados = str ? JSON.parse(str) : this._iniciar();
-        }
-        return this._dados;
-    },
-    _salvar() { localStorage.setItem('rede_mae_db', JSON.stringify(this._dados)); },
-    _iniciar() {
-        const dados = {
-            usuarios: [],
-            planos: [
-                { id: 'p1', nome: 'Básico', desc: 'Internet individual', vel: 50, franquia: 20, preco: 49.90, rotear: false, maxRoteadas: 0, limDisp: 1 },
-                { id: 'p2', nome: 'Intermediário', desc: 'Compartilhamento limitado', vel: 150, franquia: 60, preco: 89.90, rotear: true, maxRoteadas: 3, limDisp: 3 },
-                { id: 'p3', nome: 'Avançado', desc: 'Alta velocidade', vel: 300, franquia: 150, preco: 149.90, rotear: true, maxRoteadas: 10, limDisp: 10 },
-                { id: 'p4', nome: 'Power 800', desc: 'Máxima potência 800Mbps', vel: 800, franquia: 500, preco: 299.90, rotear: true, maxRoteadas: 20, limDisp: 20 },
-                { id: 'p5', nome: 'Família', desc: '10 dispositivos sem roteador', vel: 400, franquia: 200, preco: 199.90, rotear: false, maxRoteadas: 0, limDisp: 10 }
-            ],
-            sims: [],
-            transacoes: [],
-            tokens: {},
-            admin: { email: 'admin@redemae.com', senha: 'admin123' }
-        };
-        // Adiciona admin como usuario
-        dados.usuarios.push({
-            id: 'admin_id', nome: 'Administrador', email: 'admin@redemae.com', telefone: '(11)11111-0000',
-            cpf: '000.000.000-00', senha: this._hash('admin123'), cidade: 'São Paulo', estado: 'SP',
-            saldo: 999999, status: 'ativo', data: new Date().toISOString()
-        });
-        return dados;
-    },
-    _hash(s) { return btoa(s).split('').reverse().join('') + s.length; },
-    _uuid() { return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c=='x'?r:(r&0x3|0x8)).toString(16); }); },
+const DB={carregar(){const s=localStorage.getItem('redemae_db');return s?JSON.parse(s):this.iniciar()},salvar(db){localStorage.setItem('redemae_db',JSON.stringify(db))},iniciar(){const db={usuarios:[],planos:[{id:'p1',nome:'Básico',desc:'Internet individual',vel:50,franquia:20,preco:49.90,rotear:false,maxRoteadas:0,limDisp:1},{id:'p2',nome:'Intermediário',desc:'Compartilhamento limitado',vel:150,franquia:60,preco:89.90,rotear:true,maxRoteadas:3,limDisp:3},{id:'p3',nome:'Avançado',desc:'Alta velocidade pra família',vel:300,franquia:150,preco:149.90,rotear:true,maxRoteadas:10,limDisp:10},{id:'p4',nome:'Power 800',desc:'Máxima potência 800Mbps',vel:800,franquia:500,preco:299.90,rotear:true,maxRoteadas:20,limDisp:20},{id:'p5',nome:'Família',desc:'10 dispositivos mesmo login, sem roteador',vel:400,franquia:200,preco:199.90,rotear:false,maxRoteadas:0,limDisp:10}],sims:[],transacoes:[],tokens:{}};
+db.usuarios.push({id:'admin_id',nome:'Administrador',email:'admin@redemae.com',telefone:'(11)11111-0000',cpf:'000.000.000-00',senha:this.hash('admin123'),cidade:'São Paulo',estado:'SP',saldo:999999,status:'ativo',data:new Date().toISOString()});return db},hash(s){return btoa(s).split('').reverse().join('')+s.length},uuid(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c=='x'?r:(r&0x3|0x8)).toString(16)})},
+usuarioPorEmail(e){return this.carregar().usuarios.find(u=>u.email===e.toLowerCase())},usuarioPorId(i){return this.carregar().usuarios.find(u=>u.id===i)},
+criarUsuario(d){const db=this.carregar();const u={id:this.uuid(),nome:d.nome,email:d.email.toLowerCase(),telefone:d.telefone,cpf:d.cpf,senha:this.hash(d.senha),cidade:d.cidade,estado:d.estado,saldo:0,status:'ativo',data:new Date().toISOString()};db.usuarios.push(u);
+const s={id:this.uuid(),iccid:'8955'+this.uuid().replace(/-/g,'').slice(0,12),imsi:'72405'+this.uuid().replace(/-/g,'').slice(0,10),ki:this.uuid().toUpperCase().replace(/-/g,'').slice(0,16),opc:this.uuid().toUpperCase().replace(/-/g,'').slice(0,16),usuario_id:u.id,plano_id:'p1',msisdn:'55'+['11','21','31','41'][Math.floor(Math.random()*4)]+'9'+Math.floor(10000000+Math.random()*90000000),status:'ativo',tipo:'esim',apn:'redemae.internet',consumo:0,total:60};db.sims.push(s);this.salvar(db);return{usuario:u,sim:s}},
+login(e,s){const db=this.carregar();const u=db.usuarios.find(u=>u.email===e.toLowerCase());if(!u||u.senha!==this.hash(s))return null;if(u.status==='bloqueado')return null;const t=this.uuid()+this.uuid();db.tokens[t]=u.email;this.salvar(db);return{usuario:{id:u.id,nome:u.nome,email:u.email},token:t}},
+tokenValido(t){if(!t)return null;const e=this.carregar().tokens[t];if(!e)return null;return this.usuarioPorEmail(e)},simDoUsuario(u){return this.carregar().sims.find(s=>s.usuario_id===u)},
+mudarPlano(u,p){const db=this.carregar();const s=db.sims.find(s=>s.usuario_id===u);if(s)s.plano_id=p;this.salvar(db)},
+addSaldo(u,v){const db=this.carregar();const us=db.usuarios.find(us=>us.id===u);if(!us)return;const a=us.saldo;us.saldo=Number(a)+Number(v);db.transacoes.push({id:this.uuid(),usuario_id:u,tipo:'recarga',valor:Number(v),saldo_anterior:a,saldo_posterior:us.saldo,metodo:'admin',status:'confirmada',desc:'Recarga admin',data:new Date().toISOString()});this.salvar(db)},
+debitar(u,v,d){const db=this.carregar();const us=db.usuarios.find(us=>us.id===u);if(!us||us.saldo<v)return false;const a=us.saldo;us.saldo=Number(us.saldo)-Number(v);db.transacoes.push({id:this.uuid(),usuario_id:u,tipo:'assinatura',valor:Number(v),saldo_anterior:a,saldo_posterior:us.saldo,metodo:'saldo',status:'confirmada',desc:d,data:new Date().toISOString()});this.salvar(db);return true}};
 
-    // USUÁRIOS
-    usuarioPorEmail(email) { return this._carregar().usuarios.find(u => u.email === email.toLowerCase()); },
-    usuarioPorId(id) { return this._carregar().usuarios.find(u => u.id === id); },
-    criarUsuario(dados) {
-        const db = this._carregar();
-        const usuario = {
-            id: this._uuid(), nome: dados.nome, email: dados.email.toLowerCase(), telefone: dados.telefone,
-            cpf: dados.cpf, senha: this._hash(dados.senha), cidade: dados.cidade, estado: dados.estado,
-            saldo: 0, status: 'ativo', data: new Date().toISOString()
-        };
-        db.usuarios.push(usuario);
-
-        // Gera eSIM
-        const sim = {
-            id: this._uuid(), iccid: '8955' + this._uuid().slice(0,12), imsi: '72405' + this._uuid().slice(0,10),
-            ki: this._uuid().toUpperCase(), opc: this._uuid().toUpperCase(),
-            usuario_id: usuario.id, plano_id: 'p1',
-            msisdn: '55' + ['11','21','31','41'][Math.floor(Math.random()*4)] + '9' + Math.floor(10000000+Math.random()*90000000),
-            status: 'ativo', tipo: 'esim', apn: 'redemae.internet', consumo: 0, total: 60
-        };
-        db.sims.push(sim);
-        this._salvar();
-        return { usuario, sim };
-    },
-    login(email, senha) {
-        const u = this.usuarioPorEmail(email);
-        if (!u || u.senha !== this._hash(senha)) return null;
-        if (u.status === 'bloqueado') return null;
-        const token = this._uuid() + this._uuid();
-        this._carregar().tokens[token] = u.email;
-        this._salvar();
-        return { usuario: { id: u.id, nome: u.nome, email: u.email }, token };
-    },
-    tokenValido(token) {
-        if (!token) return null;
-        const db = this._carregar();
-        const email = db.tokens[token];
-        if (!email) return null;
-        return this.usuarioPorEmail(email);
-    },
-
-    // SIM
-    simDoUsuario(uid) { return this._carregar().sims.find(s => s.usuario_id === uid); },
-    mudarPlano(uid, planoId) {
-        const db = this._carregar();
-        const sim = db.sims.find(s => s.usuario_id === uid);
-        if (sim) sim.plano_id = planoId;
-        this._salvar();
-    },
-
-    // TRANSAÇÕES
-    adicionarSaldo(uid, valor) {
-        const db = this._carregar();
-        const u = db.usuarios.find(u => u.id === uid);
-        if (!u) return;
-        const ant = u.saldo;
-        u.saldo = Number(ant) + Number(valor);
-        db.transacoes.push({
-            id: this._uuid(), usuario_id: uid, tipo: 'recarga', valor: Number(valor),
-            saldo_anterior: ant, saldo_posterior: u.saldo, metodo: 'admin',
-            status: 'confirmada', desc: 'Recarga admin', data: new Date().toISOString()
-        });
-        this._salvar();
-    },
-    debitarSaldo(uid, valor, desc) {
-        const db = this._carregar();
-        const u = db.usuarios.find(u => u.id === uid);
-        if (!u || u.saldo < valor) return false;
-        const ant = u.saldo;
-        u.saldo = Number(u.saldo) - Number(valor);
-        db.transacoes.push({
-            id: this._uuid(), usuario_id: uid, tipo: 'assinatura', valor: Number(valor),
-            saldo_anterior: ant, saldo_posterior: u.saldo, metodo: 'saldo',
-            status: 'confirmada', desc: desc, data: new Date().toISOString()
-        });
-        this._salvar();
-        return true;
-    }
-};
-
-// ==================== INTERFACE ====================
-let usuarioAtual = null;
-
-function mostrarPagina(pagina) {
-    document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
-    document.getElementById('pagina' + pagina.charAt(0).toUpperCase() + pagina.slice(1)).classList.add('active');
-
-    document.querySelectorAll('#navHeader a').forEach(a => a.classList.remove('active'));
-    const navEl = document.getElementById('nav' + pagina.charAt(0).toUpperCase() + pagina.slice(1));
-    if (navEl) navEl.classList.add('active');
-
-    if (pagina === 'painel' && usuarioAtual) renderPainel();
-    if (pagina === 'admin' && usuarioAtual && usuarioAtual.email === 'admin@redemae.com') renderAdmin();
-}
-
-function alerta(id, tipo, msg) {
-    document.getElementById(id).innerHTML = `<div class="alert alert-${tipo}">${msg}</div>`;
-    setTimeout(() => document.getElementById(id).innerHTML = '', 5000);
-}
-
-// ==================== CADASTRO ====================
-function cadastrar(e) {
-    e.preventDefault();
-    const dados = {
-        nome: document.getElementById('cNome').value.trim(),
-        email: document.getElementById('cEmail').value.trim(),
-        telefone: document.getElementById('cTel').value.trim(),
-        cpf: document.getElementById('cCpf').value.trim(),
-        senha: document.getElementById('cSenha').value,
-        cidade: document.getElementById('cCidade').value.trim(),
-        estado: document.getElementById('cEstado').value
-    };
-    if (!document.getElementById('cTermos').checked) {
-        alerta('cadastroAlert', 'error', 'Aceite os termos de uso.');
-        return false;
-    }
-    if (Object.values(dados).some(v => !v)) {
-        alerta('cadastroAlert', 'error', 'Preencha todos os campos.');
-        return false;
-    }
-    const existe = DB.usuarioPorEmail(dados.email);
-    if (existe) {
-        alerta('cadastroAlert', 'error', 'Email já cadastrado.');
-        return false;
-    }
-    const result = DB.criarUsuario(dados);
-    const token = DB.login(dados.email, dados.senha);
-    if (token) {
-        usuarioAtual = token.usuario;
-        atualizarNav();
-        alerta('cadastroAlert', 'success', `✅ Cadastro realizado! eSIM ativado: ${result.sim.msisdn}`);
-        document.getElementById('formCadastro').reset();
-    }
-    return false;
-}
-
-// ==================== LOGIN ====================
-function logar(e) {
-    e.preventDefault();
-    const email = document.getElementById('lEmail').value.trim();
-    const senha = document.getElementById('lSenha').value;
-    const result = DB.login(email, senha);
-    if (!result) {
-        alerta('loginAlert', 'error', 'Credenciais inválidas ou conta bloqueada.');
-        return false;
-    }
-    usuarioAtual = result.usuario;
-    atualizarNav();
-    if (email === 'admin@redemae.com') {
-        mostrarPagina('admin');
-        renderAdmin();
-    } else {
-        mostrarPagina('painel');
-        renderPainel();
-    }
-    document.getElementById('formLogin').reset();
-    return false;
-}
-
-function sair() {
-    usuarioAtual = null;
-    atualizarNav();
-    mostrarPagina('home');
-}
-
-function atualizarNav() {
-    const logado = usuarioAtual !== null;
-    const isAdmin = logado && usuarioAtual.email === 'admin@redemae.com';
-    document.getElementById('navPainel').style.display = logado && !isAdmin ? 'inline' : 'none';
-    document.getElementById('navAdmin').style.display = isAdmin ? 'inline' : 'none';
-    document.getElementById('navCadastro').style.display = logado ? 'none' : 'inline';
-    document.getElementById('navLogin').style.display = logado ? 'none' : 'inline';
-    document.getElementById('btnSair').style.display = logado ? 'inline' : 'none';
-}
-
-// ==================== PAINEL DO CLIENTE ====================
-function renderPainel() {
-    if (!usuarioAtual) { mostrarPagina('login'); return; }
-    const u = DB.usuarioPorId(usuarioAtual.id);
-    const sim = DB.simDoUsuario(usuarioAtual.id);
-    const plano = DB._carregar().planos.find(p => p.id === (sim ? sim.plano_id : 'p1'));
-    const planos = DB._carregar().planos;
-
-    document.getElementById('painelConteudo').innerHTML = `
-        <div class="grid-2">
-            <div class="card">
-                <h3 class="card-title">👤 Meus Dados</h3>
-                <p><strong>${u.nome}</strong></p>
-                <p class="text-gray">${u.email}</p>
-                <p class="text-gray">${u.telefone}</p>
-                <p class="text-gray">Saldo: <strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></p>
-                <span class="badge ${u.status === 'ativo' ? 'badge-success' : 'badge-danger'}">${u.status}</span>
-            </div>
-            <div class="card">
-                <h3 class="card-title">📡 eSIM</h3>
-                ${sim ? `
-                    <p><strong>ICCID:</strong> ${sim.iccid}</p>
-                    <p><strong>IMSI:</strong> ${sim.imsi}</p>
-                    <p><strong>Número:</strong> ${sim.msisdn}</p>
-                    <p><strong>APN:</strong> ${sim.apn}</p>
-                    <p><strong>Consumo:</strong> ${sim.consumo}GB / ${sim.total}GB</p>
-                    <span class="badge ${sim.status === 'ativo' ? 'badge-success' : 'badge-danger'}">${sim.status}</span>
-                ` : '<p class="text-gray">Nenhum eSIM ativo.</p>'}
-            </div>
-        </div>
-        <div class="card">
-            <h3 class="card-title">📋 Meu Plano Atual: ${plano ? plano.nome : 'Nenhum'}</h3>
-            ${plano ? `
-                <p class="text-gray">${plano.desc} — ${plano.vel}Mbps, ${plano.franquia}GB, R$ ${plano.preco.toFixed(2)}/mês</p>
-                <p class="text-gray">Dispositivos: até ${plano.limDisp} | Roteamento: ${plano.rotear ? `Sim (${plano.maxRoteadas} conexões)` : 'Não'}</p>
-            ` : ''}
-        </div>
-        <div class="card">
-            <h3 class="card-title">🔄 Trocar de Plano</h3>
-            <p class="text-gray mb-4">Selecione um novo plano (o valor será debitado do seu saldo).</p>
-            <div class="grid-3">
-                ${planos.map(p => `
-                    <div style="background:#0f172a;border-radius:12px;padding:16px;border:1px solid ${p.id === (sim?sim.plano_id:'') ? '#6366f1' : '#334155'};">
-                        <div style="font-weight:600;">${p.nome}</div>
-                        <div class="text-gray" style="font-size:13px;">${p.vel}Mbps • ${p.franquia}GB • ${p.limDisp} disp.</div>
-                        <div style="font-size:24px;font-weight:700;margin:8px 0;">R$ ${p.preco.toFixed(2)}<span style="font-size:14px;color:#64748b;font-weight:400;">/mês</span></div>
-                        ${p.id !== (sim?sim.plano_id:'') ? `<button class="btn btn-primary btn-sm w-full" onclick="contratarPlano('${p.id}')">Contratar</button>` : '<span class="badge badge-info w-full" style="display:block;text-align:center;">Atual</span>'}
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `;
-}
-
-function contratarPlano(planoId) {
-    if (!usuarioAtual) return;
-    const db = DB._carregar();
-    const plano = db.planos.find(p => p.id === planoId);
-    const u = DB.usuarioPorId(usuarioAtual.id);
-    if (!plano || !u) return;
-    if (u.saldo < plano.preco) {
-        alert(`Saldo insuficiente! Necessário: R$ ${plano.preco.toFixed(2)} | Seu saldo: R$ ${u.saldo.toFixed(2)}`);
-        return;
-    }
-    if (DB.debitarSaldo(usuarioAtual.id, plano.preco, `Plano ${plano.nome}`)) {
-        DB.mudarPlano(usuarioAtual.id, planoId);
-        alert(`✅ Plano ${plano.nome} contratado com sucesso!`);
-        renderPainel();
-    }
-}
-
-// ==================== ADMIN ====================
-function renderAdmin() {
-    if (!usuarioAtual || usuarioAtual.email !== 'admin@redemae.com') {
-        alert('Acesso restrito ao administrador.');
-        mostrarPagina('login');
-        return;
-    }
-    const db = DB._carregar();
-    const usuarios = db.usuarios.filter(u => u.email !== 'admin@redemae.com');
-    const stats = {
-        total: usuarios.length,
-        ativos: usuarios.filter(u => u.status === 'ativo').length,
-        receita: db.transacoes.filter(t => t.status === 'confirmada').reduce((s,t) => s + Number(t.valor), 0)
-    };
-
-    let html = `
-        <div class="grid-3" style="margin-bottom:24px;">
-            <div class="card"><div class="text-gray">Total de clientes</div><div style="font-size:32px;font-weight:700;">${stats.total}</div></div>
-            <div class="card"><div class="text-gray">Clientes ativos</div><div style="font-size:32px;font-weight:700;color:#10b981;">${stats.ativos}</div></div>
-            <div class="card"><div class="text-gray">Receita total</div><div style="font-size:32px;font-weight:700;color:#f59e0b;">R$ ${stats.receita.toFixed(2)}</div></div>
-        </div>
-        <div class="card">
-            <div class="flex-between mb-4">
-                <h3 class="card-title" style="margin:0;">📋 Clientes Cadastrados</h3>
-            </div>
-            <div style="overflow-x:auto;">
-                <table class="table">
-                    <thead><tr>
-                        <th>Nome</th><th>Email</th><th>Telefone</th><th>CPF</th><th>Saldo</th><th>Status</th><th>Ações</th>
-                    </tr></thead>
-                    <tbody>
-                        ${usuarios.length === 0 ? '<tr><td colspan="7" class="text-center text-gray">Nenhum cliente cadastrado.</td></tr>' :
-                        usuarios.map(u => `
-                            <tr>
-                                <td><strong>${u.nome}</strong></td>
-                                <td class="text-gray">${u.email}</td>
-                                <td class="text-gray">${u.telefone}</td>
-                                <td class="text-gray">${u.cpf}</td>
-                                <td><strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></td>
-                                <td><span class="badge ${u.status === 'ativo' ? 'badge-success' : 'badge-danger'}">${u.status}</span></td>
-                                <td>
-                                    <div style="display:flex;gap:4px;flex-wrap:wrap;">
-                                        ${u.status === 'ativo' 
-                                            ? `<button class="btn btn-sm btn-danger" onclick="bloquear('${u.id}')">Bloquear</button>`
-                                            : `<button class="btn btn-sm btn-success" onclick="ativar('${u.id}')">Ativar</button>`
-                                        }
-                                        <button class="btn btn-sm btn-outline" onclick="recargaAdmin('${u.id}')">+Recarga</button>
-                                        <button class="btn btn-sm btn-outline" onclick="configRede('${u.id}')">Rede</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    `;
-    document.getElementById('adminConteudo').innerHTML = html;
-}
-
-function bloquear(id) {
-    const db = DB._carregar();
-    const u = db.usuarios.find(u => u.id === id);
-    if (u) { u.status = 'bloqueado'; DB._salvar(); renderAdmin(); alert('✅ Cliente bloqueado.'); }
-}
-
-function ativar(id) {
-    const db = DB._carregar();
-    const u = db.usuarios.find(u => u.id === id);
-    if (u) { u.status = 'ativo'; DB._salvar(); renderAdmin(); alert('✅ Cliente ativado.'); }
-}
-
-function recargaAdmin(id) {
-    const valor = prompt('Valor da recarga (R$):');
-    if (!valor || isNaN(valor) || Number(valor) <= 0) return;
-    DB.adicionarSaldo(id, Number(valor));
-    renderAdmin();
-    alert(`✅ Recarga de R$ ${Number(valor).toFixed(2)} realizada.`);
-}
-
-function configRede(id) {
-    const apn = prompt('Novo APN (ex: redemae.internet):', 'redemae.internet');
-    if (!apn) return;
-    const db = DB._carregar();
-    const sim = db.sims.find(s => s.usuario_id === id);
-    if (sim) { sim.apn = apn; DB._salvar(); alert('✅ APN atualizado.'); renderAdmin(); }
-}
-
-// ==================== INICIALIZAR ====================
-DB._carregar();
-atualizarNav();
-
-// Verifica se tem token salvo
-const tokenSalvo = localStorage.getItem('rede_mae_token');
-if (tokenSalvo) {
-    const u = DB.tokenValido(tokenSalvo);
-    if (u) {
-        usuarioAtual = { id: u.id, nome: u.nome, email: u.email };
-        atualizarNav();
-        if (u.email === 'admin@redemae.com') {
-            mostrarPagina('admin');
-            renderAdmin();
-        }
-    }
-}
-
-// Salva token quando loga
-const loginOriginal = logar;
-logar = function(e) {
-    const ret = loginOriginal(e);
-    if (usuarioAtual) localStorage.setItem('rede_mae_token', DB._carregar().tokens[Object.keys(DB._carregar().tokens).find(k => DB._carregar().tokens[k] === usuarioAtual.email)]);
-    return ret;
-};
-
-// Remove token quando sai
-const sairOriginal = sair;
-sair = function() {
-    localStorage.removeItem('rede_mae_token');
-    sairOriginal();
-};
+let usuarioAtual=null;
+function irPara(p){document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.getElementById('pagina'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('active');document.querySelectorAll('#navHeader a').forEach(x=>x.classList.remove('active'));const e=document.getElementById('nav'+p.charAt(0).toUpperCase()+p.slice(1));if(e)e.classList.add('active');if(p==='painel'&&usuarioAtual)renderPainel();if(p==='admin'&&usuarioAtual&&usuarioAtual.email==='admin@redemae.com')renderAdmin()}
+function alerta(i,t,m){document.getElementById(i).innerHTML=`<div class="alert alert-${t}">${m}</div>`;setTimeout(()=>document.getElementById(i).innerHTML='',5000)}
+function cadastrar(e){e.preventDefault();const d={nome:document.getElementById('cNome').value.trim(),email:document.getElementById('cEmail').value.trim(),telefone:document.getElementById('cTel').value.trim(),cpf:document.getElementById('cCpf').value.trim(),senha:document.getElementById('cSenha').value,cidade:document.getElementById('cCidade').value.trim(),estado:document.getElementById('cEstado').value};if(!document.getElementById('cTermos').checked){alerta('cadastroAlert','error','Aceite os termos.');return false}if(Object.values(d).some(v=>!v)){alerta('cadastroAlert','error','Preencha tudo.');return false}if(DB.usuarioPorEmail(d.email)){alerta('cadastroAlert','error','Email já existe.');return false}const r=DB.criarUsuario(d);const tk=DB.login(d.email,d.senha);if(tk){usuarioAtual=tk.usuario;localStorage.setItem('redemae_token',tk.token);atualizarNav();alerta('cadastroAlert','success','✅ Cadastro realizado! eSIM ativado.');document.getElementById('formCadastro').reset()}return false}
+function logar(e){e.preventDefault();const email=document.getElementById('lEmail').value.trim();const senha=document.getElementById('lSenha').value;const r=DB.login(email,senha);if(!r){alerta('loginAlert','error','Credenciais inválidas.');return false}usuarioAtual=r.usuario;localStorage.setItem('redemae_token',r.token);atualizarNav();if(email==='admin@redemae.com'){irPara('admin');renderAdmin()}else{irPara('painel');renderPainel()}document.getElementById('formLogin').reset();return false}
+function sair(){usuarioAtual=null;localStorage.removeItem('redemae_token');atualizarNav();irPara('home')}
+function atualizarNav(){const l=usuarioAtual!==null;const a=l&&usuarioAtual.email==='admin@redemae.com';document.getElementById('navPainel').style.display=l&&!a?'inline':'none';document.getElementById('navAdmin').style.display=a?'inline':'none';document.getElementById('navCadastro').style.display=l?'none':'inline';document.getElementById('navLogin').style.display=l?'none':'inline';document.getElementById('btnSair').style.display=l?'inline':'none'}
+function renderPainel(){if(!usuarioAtual){irPara('login');return}const u=DB.usuarioPorId(usuarioAtual.id);const s=DB.simDoUsuario(usuarioAtual.id);const db=DB.carregar();const pl=db.planos.find(p=>p.id===(s?s.plano_id:'p1'));const planos=db.planos;
+document.getElementById('painelConteudo').innerHTML=`<div class="grid-2"><div class="card"><h3 class="card-title">👤 Dados</h3><p><strong>${u.nome}</strong></p><p class="text-gray">${u.email}</p><p class="text-gray">${u.telefone}</p><p class="text-gray">Saldo: <strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></p><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span></div><div class="card"><h3 class="card-title">📡 eSIM</h3>${s?`<p><strong>ICCID:</strong> ${s.iccid}</p><p><strong>IMSI:</strong> ${s.imsi}</p><p><strong>Número:</strong> ${s.msisdn}</p><p><strong>APN:</strong> ${s.apn}</p><span class="badge ${s.status==='ativo'?'badge-success':'badge-danger'}">${s.status}</span>`:'<p class="text-gray">Sem eSIM.</p>'}</div></div><div class="card"><h3 class="card-title">📋 Plano: ${pl?pl.nome:'Nenhum'}</h3>${pl?`<p class="text-gray">${pl.desc} — ${pl.vel}Mbps, ${pl.franquia}GB, R$ ${pl.preco.toFixed(2)}/mês</p><p class="text-gray">Dispositivos: ${pl.limDisp} | Roteamento: ${pl.rotear?'Sim':'Não'}</p>`:''}</div><div class="card"><h3 class="card-title">🔄 Trocar Plano</h3><p class="text-gray mb-4">Valor debitado do saldo.</p><div class="grid-3">${planos.map(p=>`<div style="background:#0f172a;border-radius:12px;padding:16px;border:1px solid ${p.id===(s?s.plano_id:'')?'#6366f1':'#334155'};"><div style="font-weight:600;">${p.nome}</div><div class="text-gray" style="font-size:13px;">${p.vel}Mbps • ${p.franquia}GB • ${p.limDisp} disp.</div><div style="font-size:24px;font-weight:700;margin:8px 0;">R$ ${p.preco.toFixed(2)}<span style="font-size:14px;color:#64748b;font-weight:400;">/mês</span></div>${p.id!==(s?s.plano_id:'')?`<button class="btn btn-primary btn-sm w-full" onclick="contratar('${p.id}')">Contratar</button>`:'<span class="badge badge-info w-full" style="display:block;text-align:center;">Atual</span>'}</div>`).join('')}</div></div>`}
+function contratar(p){if(!usuarioAtual)return;const db=DB.carregar();const pl=db.planos.find(x=>x.id===p);const u=DB.usuarioPorId(usuarioAtual.id);if(!pl||!u)return;if(u.saldo<pl.preco){alert(`Saldo insuficiente! R$ ${pl.preco.toFixed(2)}, tem R$ ${u.saldo.toFixed(2)}`);return}if(DB.debitar(usuarioAtual.id,pl.preco,`Plano ${pl.nome}`)){DB.mudarPlano(usuarioAtual.id,p);alert(`✅ Plano ${pl.nome} contratado!`);renderPainel()}}
+function renderAdmin(){if(!usuarioAtual||usuarioAtual.email!=='admin@redemae.com'){irPara('login');return}const db=DB.carregar();const us=db.usuarios.filter(u=>u.email!=='admin@redemae.com');const stats={total:us.length,ativos:us.filter(u=>u.status==='ativo').length,receita:db.transacoes.filter(t=>t.status==='confirmada').reduce((s,t)=>s+Number(t.valor),0)};
+document.getElementById('adminConteudo').innerHTML=`<div class="grid-3"><div class="card"><div class="text-gray">Clientes</div><div style="font-size:32px;font-weight:700;">${stats.total}</div></div><div class="card"><div class="text-gray">Ativos</div><div style="font-size:32px;font-weight:700;color:#10b981;">${stats.ativos}</div></div><div class="card"><div class="text-gray">Receita</div><div style="font-size:32px;font-weight:700;color:#f59e0b;">R$ ${stats.receita.toFixed(2)}</div></div></div><div class="card"><div class="flex-between mb-4"><h3 class="card-title" style="margin:0;">📋 Clientes</h3></div><div style="overflow-x:auto;"><table class="table"><thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>CPF</th><th>Saldo</th><th>Status</th><th>Ações</th></tr></thead><tbody>${us.length===0?'<tr><td colspan="7" class="text-center text-gray">Nenhum cliente.</td></tr>':us.map(u=>`<tr><td><strong>${u.nome}</strong></td><td class="text-gray">${u.email}</td><td class="text-gray">${u.telefone}</td><td class="text-gray">${u.cpf}</td><td><strong style="color:#10b981;">R$ ${Number(u.saldo).toFixed(2)}</strong></td><td><span class="badge ${u.status==='ativo'?'badge-success':'badge-danger'}">${u.status}</span></td><td><div style="display:flex;gap:4px;flex-wrap:wrap;">${u.status==='ativo'?`<button class="btn btn-sm btn-danger" onclick="bloquear('${u.id}')">Bloquear</button>`:`<button class="btn btn-sm btn-success" onclick="ativar('${u.id}')">Ativar</button>`}<button class="btn btn-sm btn-outline" onclick="recarga('${u.id}')">+Recarga</button><button class="btn btn-sm btn-outline" onclick="verSim('${u.id}')">eSIM</button></div></td></tr>`).join('')}</tbody></table></div></div>`}
+function bloquear(i){const db=DB.carregar();const u=db.usuarios.find(u=>u.id===i);if(u){u.status='bloqueado';DB.salvar(db);renderAdmin();alert('✅ Bloqueado.')}}
+function ativar(i){const db=DB.carregar();const u=db.usuarios.find(u=>u.id===i);if(u){u.status='ativo';DB.salvar(db);renderAdmin();alert('✅ Ativado.')}}
+function recarga(i){const v=prompt('Valor (R$):');if(!v||isNaN(v)||Number(v)<=0)return;DB.addSaldo(i,Number(v));renderAdmin();alert(`✅ Recarga R$ ${Number(v).toFixed(2)}.`)}
+function verSim(i){const db=DB.carregar();const s=db.sims.find(s=>s.usuario_id===i);if(!s){alert('Sem eSIM.');return}alert(`📡 eSIM\nICCID: ${s.iccid}\nIMSI: ${s.imsi}\nNúmero: ${s.msisdn}\nKi: ${s.ki}\nOPc: ${s.opc}\nAPN: ${s.apn}\nConsumo: ${s.consumo}GB / ${s.total}GB`)}
+DB.carregar();atualizarNav();const tk=localStorage.getItem('redemae_token');if(tk){const u=DB.tokenValido(tk);if(u){usuarioAtual={id:u.id,nome:u.nome,email:u.email};atualizarNav();if(u.email==='admin@redemae.com'){irPara('admin');renderAdmin()}}}
 </script>
 </body>
 </html>
